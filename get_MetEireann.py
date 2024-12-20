@@ -1,4 +1,4 @@
-import requests
+# import requests
 import xml.etree.ElementTree as ET
 
 def fetch_met_eireann_data(from_date, to_date):
@@ -80,25 +80,8 @@ def extract_weather_data(xml_string, start_time, end_time, elements_to_extract):
                             weather_data[from_time] = data_extracted
 
                 return weather_data
-            
-def fetch_and_process_weather_data():
-    from_date = "2024-12-15T00:00"
-    to_date = "2024-12-17T23:00"
-    response = download_met_eireann_data(from_date, to_date)
-    # Specify the time range and elements to extract
-    start_time = from_date
-    end_time = to_date
-    elements_to_extract = ['symbol', 'precipitation']
-    xml_data = response.content.decode('utf-8')
-    print(xml_data)
 
-    # Call the function
-    weather_data = extract_weather_data(xml_data, start_time, end_time, elements_to_extract)
-
-    #print the number of items in the dictionary
-    print(len(weather_data))
-
-#%%
+# Function to convert weather data to output dictionary
 
 # Define the mapping of weather symbols to font icons
 symbol_to_icon = {
@@ -143,13 +126,45 @@ symbol_to_icon = {
         "LightSleet": "wi-sleet",
         "HeavySleet": "wi-sleet",
         "LightSnow": "wi-snow",
-        "HeavySnow": "wi-snow"
-    }
+        "HeavySnow": "wi-snow"}
 
-# using the dict above, print the weather for the next 24 hours naming both the met eireann symbol and the font icon
-# for time, info in weather_data.items():
-#     symbol = info.get('symbol', 'unknown')
-#     precipitation_mm = info.get('precipitation_mm', 'unknown')
-#     precipitation_probability = info.get('precipitation_probability', 'unknown')
-#     icon = info.get('symbol', 'unknown')
-#     print(f"{time}: {symbol} {icon} Precipitation: {precipitation_mm}mm Probability: {precipitation_probability}%")
+
+def convert_weather_data_to_output_dict(weather_data, symbol_to_icon):
+    output_dict = {}
+    for time, info in weather_data.items():
+        symbol = info.get('symbol', 'unknown')
+        precipitation_mm = info.get('precipitation_mm', 'unknown')
+        precipitation_probability = info.get('precipitation_probability', 'unknown')
+        icon = symbol_to_icon.get(symbol, 'wi-na')
+        output_dict[time] = {
+            'symbol': symbol,
+            'icon': icon,
+            'precipitation_mm': precipitation_mm,
+            'precipitation_probability': precipitation_probability
+        }
+    return output_dict
+
+
+def fetch_and_process_weather_data():
+    from_date = "2024-12-15T00:00"
+    to_date = "2024-12-17T23:00"
+    response = fetch_met_eireann_data(from_date, to_date)
+    # Specify the time range and elements to extract
+    start_time = from_date
+    end_time = to_date
+    elements_to_extract = ['symbol', 'precipitation']
+    xml_data = response.content.decode('utf-8')
+    print(xml_data)
+
+    # Call the function
+    weather_data = extract_weather_data(xml_data, start_time, end_time, elements_to_extract)
+
+    #print the number of items in the dictionary
+    print(len(weather_data))
+
+    # Convert the weather data to an output dictionary
+    output_dict = convert_weather_data_to_output_dict(weather_data, symbol_to_icon)
+    return output_dict
+
+#%%
+

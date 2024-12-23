@@ -1,7 +1,8 @@
-# import requests
+import requests
 import xml.etree.ElementTree as ET
 
 def fetch_met_eireann_data(from_date, to_date):
+    print("Fetching data from Met Éireann...")
     url = "http://openaccess.pf.api.met.ie/metno-wdb2ts/locationforecast"
     params = {
         'lat': 54.4044,
@@ -20,66 +21,64 @@ def fetch_met_eireann_data(from_date, to_date):
         print(f"Failed to download data. Status code: {response.status_code}")
     return response
 
-# Function to parse XML and extract specific values
-def extract_weather_data(xml_string, start_time, end_time, elements_to_extract):
-    # Parse the XML string
+def new_parse_data(xml_string):
+    # Parse the XML data
     root = ET.fromstring(xml_string)
+    output_dict = {}
+
+    # Find and extract the relevant data
+    for time in root.findall(".//time"):
+        precipitation = time.find(".//precipitation")
+        symbol = time.find(".//symbol")
+
+        if precipitation is not None and symbol is not None:
+            probability = precipitation.get("probability")
+            symbol_id = symbol.get("id")
+            time_from = time.get("from")
+            icon = symbol_to_icon.get(symbol, 'wi-na')
+            output_dict[time_from] = {
+                'symbol': symbol_id,
+                'icon': icon,
+                'precipitation_probability': probability
+            }
+            print(f"time: {time_from} Symbol ID: {symbol_id}, Precipitation Probability: {probability}%")
+    return output_dict
+# Function to parse XML and extract specific values
+# def extract_weather_data(xml_string, start_time, end_time, elements_to_extract):
+#     # Parse the XML string
+#     root = ET.fromstring(xml_string)
+#     weather_data = {}
     
-    # Navigate to the product section where forecast data is stored
-    product = root.find('product')
+#     # Navigate to the product section where forecast data is stored
+#     product = root.find('product')
     
-    # Iterate through each time element and extract data
-    for time_element in product.findall('time'):
-        from_time = time_element.get('from')
-        to_time = time_element.get('to')
-        
-        # Check if the current time is within the specified range
-        if from_time >= start_time and to_time <= end_time:
-            location = time_element.find('location')
-            precipitation = location.find('precipitation')
+#     # Iterate through each time element and extract data
+#     for time_element in product.findall('time'):
+#         from_time = time_element.get('from')
+#         to_time = time_element.get('to')
+#         location = time_element.find('location')
+#         precipitation = location.find('precipitation')
+#         print('precipitation:', precipitation)
             
-            # Only proceed if there is precipitation data
-            if precipitation is not None:
-                data_extracted = {}
-                
-                # Check for each requested element and gather data
-                for element in elements_to_extract:
-                    if element == 'symbol':
-                        symbol = location.find('symbol')
-                        if symbol is not None:
-                            data_extracted['symbol'] = symbol.get('id')
-                    if element == 'precipitation':
-                        data_extracted['precipitation_mm'] = precipitation.get('value')
-                        data_extracted['precipitation_probability'] = precipitation.get('probability')
-                
-                # Print the extracted data
-                print(f"Data from {from_time} to {to_time}: {data_extracted}")
+#         # Only proceed if there is precipitation data
+#         if precipitation is not None:
+#             data_extracted = {}
+            
+#             # Check for each requested element and gather data
+#             for element in elements_to_extract:
+#                 if element == 'symbol':
+#                     symbol = location.find('symbol')
+#                     if symbol is not None:
+#                         data_extracted['symbol'] = symbol.get('id')
+#                 if element == 'precipitation':
+#                     data_extracted['precipitation_mm'] = precipitation.get('value')
+#                     # data_extracted['precipitation_probability'] = precipitation.get('probability')
+            
+#             # Print the extracted data
+#             print(f"Data from {from_time} to {to_time}: {data_extracted}")
+#             weather_data[from_time] = data_extracted
 
-                weather_data = {}
-
-                for time_element in product.findall('time'):
-                    from_time = time_element.get('from')
-                    to_time = time_element.get('to')
-
-                    if from_time >= start_time and to_time <= end_time:
-                        location = time_element.find('location')
-                        precipitation = location.find('precipitation')
-
-                        if precipitation is not None:
-                            data_extracted = {}
-
-                            for element in elements_to_extract:
-                                if element == 'symbol':
-                                    symbol = location.find('symbol')
-                                    if symbol is not None:
-                                        data_extracted['symbol'] = symbol.get('id')
-                                if element == 'precipitation':
-                                    data_extracted['precipitation_mm'] = precipitation.get('value')
-                                    data_extracted['precipitation_probability'] = precipitation.get('probability')
-
-                            weather_data[from_time] = data_extracted
-
-                return weather_data
+#             return weather_data
 
 # Function to convert weather data to output dictionary
 
@@ -129,42 +128,61 @@ symbol_to_icon = {
         "HeavySnow": "wi-snow"}
 
 
-def convert_weather_data_to_output_dict(weather_data, symbol_to_icon):
-    output_dict = {}
-    for time, info in weather_data.items():
-        symbol = info.get('symbol', 'unknown')
-        precipitation_mm = info.get('precipitation_mm', 'unknown')
-        precipitation_probability = info.get('precipitation_probability', 'unknown')
-        icon = symbol_to_icon.get(symbol, 'wi-na')
-        output_dict[time] = {
-            'symbol': symbol,
-            'icon': icon,
-            'precipitation_mm': precipitation_mm,
-            'precipitation_probability': precipitation_probability
-        }
-    return output_dict
+# def convert_weather_data_to_output_dict(weather_data, symbol_to_icon):
+#     output_dict = {}
+#     for time, info in weather_data.items():
+#         symbol = info.get('symbol', 'unknown')
+#         precipitation_mm = info.get('precipitation_mm', 'unknown')
+#         precipitation_probability = info.get('precipitation_probability', 'unknown')
+#         icon = symbol_to_icon.get(symbol, 'wi-na')
+#         output_dict[time] = {
+#             'symbol': symbol,
+#             'icon': icon,
+#             'precipitation_mm': precipitation_mm,
+#             'precipitation_probability': precipitation_probability
+#         }
+#     return output_dict
 
 
-def fetch_and_process_weather_data():
-    from_date = "2024-12-15T00:00"
-    to_date = "2024-12-17T23:00"
-    response = fetch_met_eireann_data(from_date, to_date)
-    # Specify the time range and elements to extract
-    start_time = from_date
-    end_time = to_date
-    elements_to_extract = ['symbol', 'precipitation']
-    xml_data = response.content.decode('utf-8')
-    print(xml_data)
+# def fetch_and_process_weather_data():
+#     from_date = "2024-12-15T00:00"
+#     to_date = "2024-12-17T23:00"
+#     response = fetch_met_eireann_data(from_date, to_date)
+#     # Specify the time range and elements to extract
+#     start_time = from_date
+#     end_time = to_date
+#     elements_to_extract = ['symbol', 'precipitation']
+#     xml_data = response.content.decode('utf-8')
+#     print(xml_data)
 
-    # Call the function
-    weather_data = extract_weather_data(xml_data, start_time, end_time, elements_to_extract)
+#     new_parse_data(xml_data)
 
-    #print the number of items in the dictionary
-    print(len(weather_data))
+#     # Call the function
+#     weather_data = extract_weather_data(xml_data, start_time, end_time, elements_to_extract)
+#     print(weather_data)
+#     #print the number of items in the dictionary
 
-    # Convert the weather data to an output dictionary
-    output_dict = convert_weather_data_to_output_dict(weather_data, symbol_to_icon)
-    return output_dict
+
+#     # Convert the weather data to an output dictionary
+#     output_dict = convert_weather_data_to_output_dict(weather_data, symbol_to_icon)
+#     return output_dict
 
 #%%
 
+def fetch_parse_data():
+    from_date = "2024-12-15T00:00"
+    to_date = "2024-12-17T23:00"
+    response = fetch_met_eireann_data(from_date, to_date)
+    xml_data = response.content.decode('utf-8')
+    output_dict = new_parse_data(xml_data)
+    return output_dict
+
+
+if __name__ == "__main__":
+    from_date = "2024-12-15T00:00"
+    to_date = "2024-12-17T23:00"
+    response = fetch_met_eireann_data(from_date, to_date)
+    xml_data = response.content.decode('utf-8')
+    print(xml_data)
+
+    output_dict = new_parse_data(xml_data)

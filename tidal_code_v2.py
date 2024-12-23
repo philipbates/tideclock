@@ -1,4 +1,4 @@
-# import requests
+import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 import ssl
@@ -141,22 +141,20 @@ def create_tide_plot_image(df, filename):
     LowTidex, LowTidey = mapper_24hr.map_point(LowTidexy)
 
     #draw vertical lines for high and low tide
-    draw.line((HighTidex, HighTidey, HighTidex, HighTidey + 100), fill='black')
-    draw.line((LowTidex, LowTidey, LowTidex, LowTidey - 100), fill='black')
+    draw.line((HighTidex, HighTidey, HighTidex, HighTidey + 50), fill='black')
+    draw.line((LowTidex, LowTidey, LowTidex, LowTidey - 50), fill='black')
     
-    # draw points and text for high and low tide
-    ptradius = 2
-    draw.ellipse((HighTidex - ptradius, HighTidey - ptradius, HighTidex + ptradius, HighTidey + ptradius), fill='black')
-    font = ImageFont.load_default()
+    font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=32)
+    # draw points and text for high tide
+    draw_point(draw, HighTidex, HighTidey, 4)
     label_time = datetime.fromtimestamp(future_times[max_index], timezone.utc).strftime('%H:%M')
+    draw.text((HighTidex, LowTidey+5), label_time, fill='black', font=font, anchor='ms')
     print(f"High tide time: {label_time} located at {HighTidex, HighTidey}")
-    draw.text((HighTidex - 10, HighTidey + 110), label_time, fill='black', font=font, align='center')
     
-    draw.ellipse((LowTidex - ptradius, LowTidey - ptradius, LowTidex + ptradius, LowTidey + ptradius), fill='black')
+    # draw points and text for low tide
+    draw_point(draw, LowTidex, LowTidey, 4)
     label_time = datetime.fromtimestamp(future_times[min_index], timezone.utc).strftime('%H:%M')
-    draw.text((LowTidex - 10, LowTidey - 120), label_time, fill='black', font=font, align='center')
-    
-
+    draw.text((LowTidex, HighTidey-5), label_time, fill='black', font=font, anchor='mt')
     print(f'Low tide time: {datetime.fromtimestamp(future_times[min_index], timezone.utc)}')
 
     #################################################################################
@@ -189,15 +187,61 @@ def create_tide_plot_image(df, filename):
     #     draw.text((i * 200, 400), label_time, fill='black', font=font)
     img.save(filename)
     img.show()
+    return img, draw, font
+
+def create_weather_image(weather_data, img, draw, font):
+    # Draw the weather data
+    for i, (time, data) in enumerate(weather_data.items()):
+        draw.text((10, 10 + i * 20), f"{time}: {data['symbol']} {data['precipitation_mm']}mm", fill='black', font=font)
+
+    # Save and display the image
+    img.save('weather_plot.png')
+    img.show()
+
+# print("Fetching data from Met Éireann...")
+# url = "http://openaccess.pf.api.met.ie/metno-wdb2ts/locationforecast"
+# params = {
+#     'lat': 54.4044,
+#     'long': -8.5602
+#     # 'from': '2024-12-15T00:00',
+#     # 'to': '2024-12-15T00:00'
+# }
+
+# response = requests.get(url, params=params)
+# print(f"Request URL: {response.url}")
+# if response.status_code == 200:
+#     with open('met_eireann_data.xml', 'wb') as file:
+#         file.write(response.content)
+#     print("Data downloaded successfully.")
+# else:
+#     print(f"Failed to download data. Status code: {response.status_code}")
+
+
+
 
 # Main function
+#################################################################################
+####### Tide Data ##########
 # Get tide data from the ERDP open data website of the marine institute
-# df_historical, df_predicted = get_TideData.fetch_and_format_tide_data()
+df_historical, df_predicted = get_TideData.fetch_and_format_tide_data()
 
 # merge the dataframes on time, starting from the end of the historical data only
 df_predicted_cut = df_predicted[df_predicted['time'] > df_historical['time'].max()]
 df_historical_cut = df_historical[df_historical['time'] < df_predicted_cut['time'].min()]
 df_merged = pd.concat([df_historical_cut, df_predicted_cut])
+img, draw, font = create_tide_plot_image(df_merged, 'tide_plot.png')
+
+
+
+#################################################################################
+####### Weather Data ##########
+time_now = datetime.now(timezone.utc)
+# Get weather data from the Met Eireann website
+weather_data = get_MetEireann.fetch_parse_data()
+print(weather_data)
+create_weather_image(weather_data, img, draw, font)
+
+
 # Plot the tide data
 plt.figure(figsize=(12, 6))
 plot_tide_data(df_historical, 'Historical Tide Level (LAT)', 'blue')
@@ -210,8 +254,5 @@ plt.grid(True)
 plt.legend()
 plt.tight_layout()
 plt.show()
-
-
-create_tide_plot_image(df_merged, 'tide_plot.png')
 
 

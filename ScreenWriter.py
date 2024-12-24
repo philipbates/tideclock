@@ -65,10 +65,10 @@ def display_error(error_source):
 
 
 
-    if __name__ == "__main__":
-        try:
-            # Example usage of write_to_screen function
-            write_to_screen('example_image.png', 10)
-        except Exception as e:
-            display_error('main')
-            print(traceback.format_exc())
+if __name__ == "__main__":
+    try:
+        # Example usage of write_to_screen function
+        write_to_screen('example_image.png', 10)
+    except Exception as e:
+        display_error('main')
+        print(traceback.format_exc())

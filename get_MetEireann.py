@@ -1,5 +1,8 @@
 import requests
 import xml.etree.ElementTree as ET
+import matplotlib.pyplot as plt
+
+
 
 def fetch_met_eireann_data(from_date, to_date):
     print("Fetching data from Met Éireann...")
@@ -127,7 +130,36 @@ symbol_to_icon = {
         "LightSnow": "wi-snow",
         "HeavySnow": "wi-snow"}
 
+# Path to the XML file
+xml_file_path = r"weather-icons-master\font\weathericons.xml"
 
+# Parse the XML to create a mapping of names to Unicode values
+tree = ET.parse(xml_file_path)
+root = tree.getroot()
+
+unicode_mapping = {}
+for string in root.findall('string'):
+    name = string.attrib.get('name')
+    unicode_value = string.text
+    unicode_mapping[name] = unicode_value
+
+# Update the dictionary to include Unicode values
+updated_symbol_to_icon = {}
+for key, value in symbol_to_icon.items():
+    unicode_value = unicode_mapping.get(value, None)  # Get Unicode value from mapping
+    updated_symbol_to_icon[key] = {
+        "original": value,
+        "unicode": unicode_value
+    }
+
+# Print the updated dictionary
+for key, value in updated_symbol_to_icon.items():
+    print(f"{key}: {value}")
+
+def map_symbol_to_unicode(symbol,updated_symbol_to_icon):
+    # Get the Unicode value for the symbol
+    unicode_value = updated_symbol_to_icon.get(symbol, {}).get('unicode', 'wi-na')
+    return unicode_value
 # def convert_weather_data_to_output_dict(weather_data, symbol_to_icon):
 #     output_dict = {}
 #     for time, info in weather_data.items():
@@ -186,3 +218,19 @@ if __name__ == "__main__":
     print(xml_data)
 
     output_dict = new_parse_data(xml_data)
+
+
+
+    # Extract times and probabilities for plotting
+    times = list(output_dict.keys())
+    probabilities = [float(data['precipitation_probability']) if data['precipitation_probability'] is not None else 0 for data in output_dict.values()]
+
+    # Plot the data
+    plt.figure(figsize=(10, 5))
+    plt.plot(times, probabilities, 'bo')  # 'bo' means blue color, round points
+    plt.xlabel('Time')
+    plt.ylabel('Precipitation Probability (%)')
+    plt.title('Precipitation Probability Over Time')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()

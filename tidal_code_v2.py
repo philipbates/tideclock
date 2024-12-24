@@ -190,31 +190,38 @@ def create_tide_plot_image(df, filename):
     return img, draw, font
 
 def create_weather_image(weather_data, img, draw, font):
+    #establish time windows
+    current_time = datetime.now(timezone.utc).timestamp()
+    # create an array of times using the date from current time and each hour like 00:00, 01:00, 02:00 etc etc
+    # Get today's date at 00:00 in UTC
+    today_midnight = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
+    # Create an array of times for each hour of the current day
+    timestamps_24hr = np.array([today_midnight + i * 3600 for i in range(25)])
+    px_for_weather = (0, 800, 0, 80)
+    mapper_weather = DataToPlotAreaMapper([today_midnight, today_midnight + 24 * 3600],
+                                          [0,1], px_for_weather, img.size)
+    for hour in timestamps_24hr:
+        # convert the hour to the correct format to match the weather data key
+        hour = datetime.fromtimestamp(hour, timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+        # get the symbol for this hour from the weather data
+        symbol = weather_data.get(hour, {}).get('symbol', 'xf075')
+        # convert the symbol to unicode
+        unicode = get_MetEireann.map_symbol_to_unicode[symbol]
+        hourxy = (hour, 0.5)
+        hr_x, hr_y = mapper_weather.map_point(hourxy)
+        # draw vertical lines between each hour of the weather data
+        font = ImageFont.truetype(r"weather-icons-master\font\weathericons-regular-webfont.ttf", size=32)
+        # draw points and text for high tide
+        draw.text((hr_x, hr_y), unicode, fill='black', font=font, anchor='ms')
+        # draw.text((200, 100), "test", fill='black', font=font, anchor='ms')
+
+
+    
     # Draw the weather data
-    for i, (time, data) in enumerate(weather_data.items()):
-        draw.text((10, 10 + i * 20), f"{time}: {data['symbol']} {data['precipitation_mm']}mm", fill='black', font=font)
 
     # Save and display the image
     img.save('weather_plot.png')
     img.show()
-
-# print("Fetching data from Met Éireann...")
-# url = "http://openaccess.pf.api.met.ie/metno-wdb2ts/locationforecast"
-# params = {
-#     'lat': 54.4044,
-#     'long': -8.5602
-#     # 'from': '2024-12-15T00:00',
-#     # 'to': '2024-12-15T00:00'
-# }
-
-# response = requests.get(url, params=params)
-# print(f"Request URL: {response.url}")
-# if response.status_code == 200:
-#     with open('met_eireann_data.xml', 'wb') as file:
-#         file.write(response.content)
-#     print("Data downloaded successfully.")
-# else:
-#     print(f"Failed to download data. Status code: {response.status_code}")
 
 
 

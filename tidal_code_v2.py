@@ -1,15 +1,17 @@
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
-import ssl
-import urllib.request
-import json
+# import ssl
+# import urllib.request
+# import json
 from datetime import datetime, timedelta, timezone
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 # from .MetEireann import create_weather_image
 import get_MetEireann
 import get_TideData
+
+
 
 ##########
 #   run this to get the venv up
@@ -50,7 +52,14 @@ class DataToPlotAreaMapper:
         x_normalized = (x_vector - self.x_min) / (self.x_max - self.x_min) * (self.pxmax - self.pxmin) + self.pxmin
         y_normalized = self.pymax - (y_vector - self.y_min) / (self.y_max - self.y_min) * (self.pymax - self.pymin)
         return x_normalized, y_normalized
-    
+
+
+# # Adjust times from UTC to current local time
+# def utc_to_local(utc_dt):
+#         local_tz = pytz.timezone("Europe/London")
+#         return utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
+
+
 # Function to plot tide data
 def plot_tide_data(df, label, color):
     plt.plot(df['time'], df['tide_level'], label=label, color=color)
@@ -202,11 +211,13 @@ def create_weather_image(weather_data, img, draw, font):
                                           [0,1], px_for_weather, img.size)
     for hour in timestamps_24hr:
         # convert the hour to the correct format to match the weather data key
-        hour = datetime.fromtimestamp(hour, timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+        hour_key = datetime.fromtimestamp(hour, timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
         # get the symbol for this hour from the weather data
-        symbol = weather_data.get(hour, {}).get('symbol', 'xf075')
+        symbol = weather_data.get(hour_key, {}).get('symbol', 'xf075')
         # convert the symbol to unicode
-        unicode = get_MetEireann.map_symbol_to_unicode[symbol]
+        unicode = get_MetEireann.get_unicode_value(symbol)
+
+        print(f'Hour: {hour}, Symbol: {symbol}, Unicode: {unicode}')
         hourxy = (hour, 0.5)
         hr_x, hr_y = mapper_weather.map_point(hourxy)
         # draw vertical lines between each hour of the weather data
@@ -253,7 +264,7 @@ create_weather_image(weather_data, img, draw, font)
 plt.figure(figsize=(12, 6))
 plot_tide_data(df_historical, 'Historical Tide Level (LAT)', 'blue')
 plot_tide_data(df_predicted, 'Predicted Tide Level (LAT)', 'red')
-# plot_tide_data(df_merged, 'Merged Tide Level (LAT)', 'green')
+plot_tide_data(df_merged, 'Merged Tide Level (LAT)', 'green')
 plt.xlabel('Time')
 plt.ylabel('Tide Level (m relative to LAT)')
 plt.title('Tide Level Over Time (Sligo Station)')

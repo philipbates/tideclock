@@ -1,201 +1,25 @@
-<weatherdata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.met.ie/Open_Data/weatherapi-0.4.xsd" created="2024-12-24T10:44:26Z">
+<weatherdata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.met.ie/Open_Data/weatherapi-0.4.xsd" created="2024-12-24T18:12:26Z">
    <meta>
-      <model name="harmonie" termin="2024-12-24T06:00:00Z" runended="2024-12-24T09:32:07Z" nextrun="2024-12-24T16:00:00Z" from="2024-12-24T11:00:00Z" to="2024-12-26T12:00:00Z" />
-      <model name="ec_n1280_1hr" termin="2024-12-24T00:00:00Z" runended="2024-12-24T09:32:07Z" nextrun="2024-12-24T18:00:00Z" from="2024-12-26T13:00:00Z" to="2024-12-27T18:00:00Z" />
-      <model name="ec_n1280_3hr" termin="2024-12-24T00:00:00Z" runended="2024-12-24T09:32:07Z" nextrun="2024-12-24T18:00:00Z" from="2024-12-27T21:00:00Z" to="2024-12-30T00:00:00Z" />
-      <model name="ec_n1280_6hr" termin="2024-12-24T00:00:00Z" runended="2024-12-24T09:32:07Z" nextrun="2024-12-24T18:00:00Z" from="2024-12-30T06:00:00Z" to="2025-01-03T00:00:00Z" />
+      <model name="harmonie" termin="2024-12-24T12:00:00Z" runended="2024-12-24T15:39:42Z" nextrun="2024-12-24T22:00:00Z" from="2024-12-24T19:00:00Z" to="2024-12-26T18:00:00Z" />
+      <model name="ec_n1280_1hr" termin="2024-12-24T00:00:00Z" runended="2024-12-24T15:39:42Z" nextrun="2024-12-25T06:00:00Z" from="2024-12-26T19:00:00Z" to="2024-12-27T18:00:00Z" />
+      <model name="ec_n1280_3hr" termin="2024-12-24T00:00:00Z" runended="2024-12-24T15:39:42Z" nextrun="2024-12-25T06:00:00Z" from="2024-12-27T21:00:00Z" to="2024-12-30T00:00:00Z" />
+      <model name="ec_n1280_6hr" termin="2024-12-24T00:00:00Z" runended="2024-12-24T15:39:42Z" nextrun="2024-12-25T06:00:00Z" from="2024-12-30T06:00:00Z" to="2025-01-03T00:00:00Z" />
       </meta>
    <product class="pointData">
-      <time datatype="forecast" from="2024-12-24T11:00:00Z" to="2024-12-24T11:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.9"/>
-            <windDirection id="dd" deg="205.2" name="SW"/>
-            <windSpeed id="ff" mps="6.9" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.6"/>
-            <globalRadiation value="14.0" unit="W/m^2"/>
-            <humidity value="95.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1021.8"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="98.9"/>
-            <dewpointTemperature id="TD" unit="celsius" value="11.2"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T10:00:00Z" to="2024-12-24T11:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T12:00:00Z" to="2024-12-24T12:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="12.0"/>
-            <windDirection id="dd" deg="198.5" name="S"/>
-            <windSpeed id="ff" mps="6.6" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.3"/>
-            <globalRadiation value="23.5" unit="W/m^2"/>
-            <humidity value="94.6" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1022.3"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="35.1"/>
-            <dewpointTemperature id="TD" unit="celsius" value="11.2"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T11:00:00Z" to="2024-12-24T12:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.3"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T13:00:00Z" to="2024-12-24T13:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="12.1"/>
-            <windDirection id="dd" deg="197.5" name="S"/>
-            <windSpeed id="ff" mps="6.8" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.2"/>
-            <globalRadiation value="26.5" unit="W/m^2"/>
-            <humidity value="93.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1022.7"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="1.9"/>
-            <dewpointTemperature id="TD" unit="celsius" value="11.2"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T12:00:00Z" to="2024-12-24T13:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T14:00:00Z" to="2024-12-24T14:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="12.3"/>
-            <windDirection id="dd" deg="199.1" name="S"/>
-            <windSpeed id="ff" mps="7.7" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.2"/>
-            <globalRadiation value="25.6" unit="W/m^2"/>
-            <humidity value="92.0" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1022.8"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="11.1"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T13:00:00Z" to="2024-12-24T14:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.3"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T15:00:00Z" to="2024-12-24T15:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="12.2"/>
-            <windDirection id="dd" deg="203.2" name="SW"/>
-            <windSpeed id="ff" mps="7.8" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.5"/>
-            <globalRadiation value="22.5" unit="W/m^2"/>
-            <humidity value="89.3" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1022.7"/>
-            <cloudiness id="NN" percent="99.6"/>
-            <lowClouds id="LOW" percent="99.6"/>
-            <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="10.6"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T14:00:00Z" to="2024-12-24T15:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.2"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T16:00:00Z" to="2024-12-24T16:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.8"/>
-            <windDirection id="dd" deg="205.8" name="SW"/>
-            <windSpeed id="ff" mps="7.6" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.6"/>
-            <globalRadiation value="9.4" unit="W/m^2"/>
-            <humidity value="88.5" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1022.7"/>
-            <cloudiness id="NN" percent="76.8"/>
-            <lowClouds id="LOW" percent="76.8"/>
-            <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="10.1"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T15:00:00Z" to="2024-12-24T16:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
-<symbol id="PartlyCloud" number="3"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T17:00:00Z" to="2024-12-24T17:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="12.0"/>
-            <windDirection id="dd" deg="199.1" name="S"/>
-            <windSpeed id="ff" mps="6.7" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.7"/>
-            <globalRadiation value="0.1" unit="W/m^2"/>
-            <humidity value="83.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1022.4"/>
-            <cloudiness id="NN" percent="99.9"/>
-            <lowClouds id="LOW" percent="99.9"/>
-            <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.4"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T16:00:00Z" to="2024-12-24T17:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T18:00:00Z" to="2024-12-24T18:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="12.0"/>
-            <windDirection id="dd" deg="201.7" name="S"/>
-            <windSpeed id="ff" mps="8.0" beaufort="5" name="Fresh breeze"/>
-            <windGust id="ff_gust" mps="11.5"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="75.3" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1022.8"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="7.8"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-24T17:00:00Z" to="2024-12-24T18:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
       <time datatype="forecast" from="2024-12-24T19:00:00Z" to="2024-12-24T19:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="12.1"/>
-            <windDirection id="dd" deg="203.7" name="SW"/>
-            <windSpeed id="ff" mps="7.4" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="12.0"/>
+            <temperature id="TTT" unit="celsius" value="12.2"/>
+            <windDirection id="dd" deg="181.9" name="S"/>
+            <windSpeed id="ff" mps="5.8" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.5"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="78.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1023.0"/>
+            <humidity value="81.9" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1022.4"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
             <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.4"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-24T18:00:00Z" to="2024-12-24T19:00:00Z">
@@ -206,17 +30,17 @@
       </time>
       <time datatype="forecast" from="2024-12-24T20:00:00Z" to="2024-12-24T20:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.7"/>
-            <windDirection id="dd" deg="200.7" name="S"/>
-            <windSpeed id="ff" mps="6.5" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.8"/>
+            <temperature id="TTT" unit="celsius" value="12.0"/>
+            <windDirection id="dd" deg="188.9" name="S"/>
+            <windSpeed id="ff" mps="5.9" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.5"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="87.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1023.3"/>
-            <cloudiness id="NN" percent="99.9"/>
-            <lowClouds id="LOW" percent="99.8"/>
+            <humidity value="85.2" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1022.8"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
+            <highClouds id="HIGH" percent="36.3"/>
             <dewpointTemperature id="TD" unit="celsius" value="9.7"/>
          </location>
       </time>
@@ -228,18 +52,18 @@
       </time>
       <time datatype="forecast" from="2024-12-24T21:00:00Z" to="2024-12-24T21:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.6"/>
-            <windDirection id="dd" deg="170.0" name="S"/>
-            <windSpeed id="ff" mps="5.7" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.3"/>
+            <temperature id="TTT" unit="celsius" value="12.0"/>
+            <windDirection id="dd" deg="172.5" name="S"/>
+            <windSpeed id="ff" mps="5.6" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.2"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="89.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1023.3"/>
+            <humidity value="87.8" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1022.8"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="14.2"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.9"/>
+            <highClouds id="HIGH" percent="96.1"/>
+            <dewpointTemperature id="TD" unit="celsius" value="10.1"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-24T20:00:00Z" to="2024-12-24T21:00:00Z">
@@ -250,18 +74,18 @@
       </time>
       <time datatype="forecast" from="2024-12-24T22:00:00Z" to="2024-12-24T22:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.5"/>
-            <windDirection id="dd" deg="177.8" name="S"/>
-            <windSpeed id="ff" mps="6.4" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.2"/>
+            <temperature id="TTT" unit="celsius" value="12.1"/>
+            <windDirection id="dd" deg="192.8" name="S"/>
+            <windSpeed id="ff" mps="6.2" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.8"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="89.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1023.6"/>
-            <cloudiness id="NN" percent="98.4"/>
-            <lowClouds id="LOW" percent="98.3"/>
+            <humidity value="87.5" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1023.1"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="6.3"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.8"/>
+            <highClouds id="HIGH" percent="67.8"/>
+            <dewpointTemperature id="TD" unit="celsius" value="10.1"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-24T21:00:00Z" to="2024-12-24T22:00:00Z">
@@ -272,18 +96,18 @@
       </time>
       <time datatype="forecast" from="2024-12-24T23:00:00Z" to="2024-12-24T23:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.6"/>
-            <windDirection id="dd" deg="176.3" name="S"/>
-            <windSpeed id="ff" mps="5.9" beaufort="4" name="Moderate breeze"/>
+            <temperature id="TTT" unit="celsius" value="12.1"/>
+            <windDirection id="dd" deg="187.7" name="S"/>
+            <windSpeed id="ff" mps="5.8" beaufort="4" name="Moderate breeze"/>
             <windGust id="ff_gust" mps="11.3"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="88.9" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1024.0"/>
+            <humidity value="86.7" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1023.6"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.9"/>
+            <highClouds id="HIGH" percent="20.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="10.0"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-24T22:00:00Z" to="2024-12-24T23:00:00Z">
@@ -294,17 +118,17 @@
       </time>
       <time datatype="forecast" from="2024-12-25T00:00:00Z" to="2024-12-25T00:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.9"/>
-            <windDirection id="dd" deg="182.6" name="S"/>
-            <windSpeed id="ff" mps="5.8" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.1"/>
+            <temperature id="TTT" unit="celsius" value="12.3"/>
+            <windDirection id="dd" deg="194.9" name="S"/>
+            <windSpeed id="ff" mps="6.4" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.3"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="85.9" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1024.5"/>
+            <humidity value="83.8" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1024.0"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.1"/>
+            <highClouds id="HIGH" percent="23.3"/>
             <dewpointTemperature id="TD" unit="celsius" value="9.6"/>
          </location>
       </time>
@@ -316,18 +140,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T01:00:00Z" to="2024-12-25T01:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.7"/>
-            <windDirection id="dd" deg="175.8" name="S"/>
-            <windSpeed id="ff" mps="6.3" beaufort="4" name="Moderate breeze"/>
+            <temperature id="TTT" unit="celsius" value="12.1"/>
+            <windDirection id="dd" deg="179.3" name="S"/>
+            <windSpeed id="ff" mps="5.9" beaufort="4" name="Moderate breeze"/>
             <windGust id="ff_gust" mps="11.1"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="85.4" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1024.6"/>
+            <humidity value="84.5" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1024.0"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.4"/>
+            <highClouds id="HIGH" percent="29.1"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.6"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T00:00:00Z" to="2024-12-25T01:00:00Z">
@@ -338,18 +162,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T02:00:00Z" to="2024-12-25T02:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.6"/>
-            <windDirection id="dd" deg="172.1" name="S"/>
-            <windSpeed id="ff" mps="7.6" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.2"/>
+            <temperature id="TTT" unit="celsius" value="11.9"/>
+            <windDirection id="dd" deg="173.1" name="S"/>
+            <windSpeed id="ff" mps="6.4" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.1"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="82.0" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1024.7"/>
-            <cloudiness id="NN" percent="99.4"/>
-            <lowClouds id="LOW" percent="99.4"/>
+            <humidity value="85.6" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1024.3"/>
+            <cloudiness id="NN" percent="98.6"/>
+            <lowClouds id="LOW" percent="98.6"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.7"/>
+            <highClouds id="HIGH" percent="17.7"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.6"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T01:00:00Z" to="2024-12-25T02:00:00Z">
@@ -360,18 +184,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T03:00:00Z" to="2024-12-25T03:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.4"/>
-            <windDirection id="dd" deg="172.2" name="S"/>
-            <windSpeed id="ff" mps="7.3" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.3"/>
+            <temperature id="TTT" unit="celsius" value="11.6"/>
+            <windDirection id="dd" deg="170.4" name="S"/>
+            <windSpeed id="ff" mps="6.7" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.2"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="83.6" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1025.0"/>
-            <cloudiness id="NN" percent="96.8"/>
-            <lowClouds id="LOW" percent="96.8"/>
+            <humidity value="87.3" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1024.7"/>
+            <cloudiness id="NN" percent="98.9"/>
+            <lowClouds id="LOW" percent="98.5"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.7"/>
+            <highClouds id="HIGH" percent="35.3"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.6"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T02:00:00Z" to="2024-12-25T03:00:00Z">
@@ -382,18 +206,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T04:00:00Z" to="2024-12-25T04:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.3"/>
-            <windDirection id="dd" deg="171.6" name="S"/>
-            <windSpeed id="ff" mps="7.0" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.4"/>
+            <temperature id="TTT" unit="celsius" value="11.6"/>
+            <windDirection id="dd" deg="172.4" name="S"/>
+            <windSpeed id="ff" mps="6.5" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.5"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="85.6" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1025.0"/>
-            <cloudiness id="NN" percent="92.3"/>
-            <lowClouds id="LOW" percent="91.5"/>
+            <humidity value="88.9" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1024.7"/>
+            <cloudiness id="NN" percent="99.8"/>
+            <lowClouds id="LOW" percent="91.8"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="5.1"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.0"/>
+            <highClouds id="HIGH" percent="91.8"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.9"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T03:00:00Z" to="2024-12-25T04:00:00Z">
@@ -404,18 +228,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T05:00:00Z" to="2024-12-25T05:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.1"/>
-            <windDirection id="dd" deg="167.6" name="S"/>
-            <windSpeed id="ff" mps="6.5" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.5"/>
+            <temperature id="TTT" unit="celsius" value="11.6"/>
+            <windDirection id="dd" deg="173.2" name="S"/>
+            <windSpeed id="ff" mps="7.3" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.8"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="87.4" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1025.1"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
+            <humidity value="87.9" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1024.6"/>
+            <cloudiness id="NN" percent="99.7"/>
+            <lowClouds id="LOW" percent="85.1"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.3"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.1"/>
+            <highClouds id="HIGH" percent="94.6"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.7"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T04:00:00Z" to="2024-12-25T05:00:00Z">
@@ -426,62 +250,62 @@
       </time>
       <time datatype="forecast" from="2024-12-25T06:00:00Z" to="2024-12-25T06:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.2"/>
-            <windDirection id="dd" deg="165.7" name="S"/>
-            <windSpeed id="ff" mps="6.3" beaufort="4" name="Moderate breeze"/>
+            <temperature id="TTT" unit="celsius" value="11.4"/>
+            <windDirection id="dd" deg="170.3" name="S"/>
+            <windSpeed id="ff" mps="6.9" beaufort="4" name="Moderate breeze"/>
             <windGust id="ff_gust" mps="12.2"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="89.5" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1025.0"/>
-            <cloudiness id="NN" percent="82.8"/>
-            <lowClouds id="LOW" percent="82.8"/>
+            <humidity value="89.1" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1024.6"/>
+            <cloudiness id="NN" percent="95.7"/>
+            <lowClouds id="LOW" percent="93.8"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.6"/>
+            <highClouds id="HIGH" percent="27.2"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.7"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T05:00:00Z" to="2024-12-25T06:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
             <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
-<symbol id="PartlyCloud" number="3"/>
+<symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T07:00:00Z" to="2024-12-25T07:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.3"/>
-            <windDirection id="dd" deg="167.7" name="S"/>
-            <windSpeed id="ff" mps="7.3" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="12.5"/>
+            <temperature id="TTT" unit="celsius" value="11.6"/>
+            <windDirection id="dd" deg="170.3" name="S"/>
+            <windSpeed id="ff" mps="6.4" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.3"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="88.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1025.1"/>
-            <cloudiness id="NN" percent="97.0"/>
-            <lowClouds id="LOW" percent="97.0"/>
+            <humidity value="87.6" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1024.6"/>
+            <cloudiness id="NN" percent="87.6"/>
+            <lowClouds id="LOW" percent="87.4"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.5"/>
+            <highClouds id="HIGH" percent="1.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.6"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T06:00:00Z" to="2024-12-25T07:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.1"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T08:00:00Z" to="2024-12-25T08:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.4"/>
+            <temperature id="TTT" unit="celsius" value="11.5"/>
             <windDirection id="dd" deg="172.9" name="S"/>
-            <windSpeed id="ff" mps="7.2" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="12.5"/>
+            <windSpeed id="ff" mps="7.1" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.3"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="85.4" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1025.4"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
+            <humidity value="85.8" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1024.8"/>
+            <cloudiness id="NN" percent="96.6"/>
+            <lowClouds id="LOW" percent="96.5"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.1"/>
+            <highClouds id="HIGH" percent="0.4"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T07:00:00Z" to="2024-12-25T08:00:00Z">
@@ -493,17 +317,17 @@
       <time datatype="forecast" from="2024-12-25T09:00:00Z" to="2024-12-25T09:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
             <temperature id="TTT" unit="celsius" value="11.4"/>
-            <windDirection id="dd" deg="173.6" name="S"/>
-            <windSpeed id="ff" mps="6.9" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.9"/>
+            <windDirection id="dd" deg="174.1" name="S"/>
+            <windSpeed id="ff" mps="7.1" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.2"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="83.2" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1025.9"/>
-            <cloudiness id="NN" percent="99.8"/>
-            <lowClouds id="LOW" percent="99.8"/>
+            <humidity value="84.6" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1025.3"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.6"/>
+            <highClouds id="HIGH" percent="0.1"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.0"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T08:00:00Z" to="2024-12-25T09:00:00Z">
@@ -514,18 +338,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T10:00:00Z" to="2024-12-25T10:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.4"/>
-            <windDirection id="dd" deg="175.7" name="S"/>
-            <windSpeed id="ff" mps="7.0" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.9"/>
-            <globalRadiation value="11.2" unit="W/m^2"/>
-            <humidity value="82.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1026.5"/>
+            <temperature id="TTT" unit="celsius" value="11.6"/>
+            <windDirection id="dd" deg="177.8" name="S"/>
+            <windSpeed id="ff" mps="7.4" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.3"/>
+            <globalRadiation value="11.3" unit="W/m^2"/>
+            <humidity value="82.8" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1026.0"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.5"/>
+            <highClouds id="HIGH" percent="0.1"/>
+            <dewpointTemperature id="TD" unit="celsius" value="8.8"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T09:00:00Z" to="2024-12-25T10:00:00Z">
@@ -536,18 +360,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T11:00:00Z" to="2024-12-25T11:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.6"/>
-            <windDirection id="dd" deg="179.1" name="S"/>
-            <windSpeed id="ff" mps="7.5" beaufort="4" name="Moderate breeze"/>
+            <temperature id="TTT" unit="celsius" value="11.7"/>
+            <windDirection id="dd" deg="175.8" name="S"/>
+            <windSpeed id="ff" mps="7.6" beaufort="4" name="Moderate breeze"/>
             <windGust id="ff_gust" mps="12.3"/>
-            <globalRadiation value="33.4" unit="W/m^2"/>
-            <humidity value="82.4" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1027.0"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
+            <globalRadiation value="29.4" unit="W/m^2"/>
+            <humidity value="84.8" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1026.5"/>
+            <cloudiness id="NN" percent="99.0"/>
+            <lowClouds id="LOW" percent="99.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
             <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.7"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T10:00:00Z" to="2024-12-25T11:00:00Z">
@@ -559,17 +383,17 @@
       <time datatype="forecast" from="2024-12-25T12:00:00Z" to="2024-12-25T12:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
             <temperature id="TTT" unit="celsius" value="11.9"/>
-            <windDirection id="dd" deg="185.0" name="S"/>
-            <windSpeed id="ff" mps="6.8" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="12.4"/>
-            <globalRadiation value="58.6" unit="W/m^2"/>
-            <humidity value="81.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1027.4"/>
-            <cloudiness id="NN" percent="99.9"/>
-            <lowClouds id="LOW" percent="99.9"/>
+            <windDirection id="dd" deg="188.7" name="S"/>
+            <windSpeed id="ff" mps="7.2" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.5"/>
+            <globalRadiation value="42.3" unit="W/m^2"/>
+            <humidity value="82.2" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1027.1"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
             <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.9"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.0"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T11:00:00Z" to="2024-12-25T12:00:00Z">
@@ -580,18 +404,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T13:00:00Z" to="2024-12-25T13:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="12.0"/>
-            <windDirection id="dd" deg="189.2" name="S"/>
+            <temperature id="TTT" unit="celsius" value="11.9"/>
+            <windDirection id="dd" deg="187.7" name="S"/>
             <windSpeed id="ff" mps="6.9" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="12.2"/>
-            <globalRadiation value="55.1" unit="W/m^2"/>
-            <humidity value="80.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1027.5"/>
+            <windGust id="ff_gust" mps="12.6"/>
+            <globalRadiation value="49.3" unit="W/m^2"/>
+            <humidity value="81.9" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1027.3"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.8"/>
+            <highClouds id="HIGH" percent="1.6"/>
+            <dewpointTemperature id="TD" unit="celsius" value="8.9"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T12:00:00Z" to="2024-12-25T13:00:00Z">
@@ -602,18 +426,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T14:00:00Z" to="2024-12-25T14:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="12.0"/>
-            <windDirection id="dd" deg="184.6" name="S"/>
-            <windSpeed id="ff" mps="7.1" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="12.0"/>
-            <globalRadiation value="56.0" unit="W/m^2"/>
-            <humidity value="81.4" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1027.6"/>
-            <cloudiness id="NN" percent="97.0"/>
-            <lowClouds id="LOW" percent="97.0"/>
+            <temperature id="TTT" unit="celsius" value="12.1"/>
+            <windDirection id="dd" deg="182.0" name="S"/>
+            <windSpeed id="ff" mps="7.3" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.3"/>
+            <globalRadiation value="44.4" unit="W/m^2"/>
+            <humidity value="80.6" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1027.1"/>
+            <cloudiness id="NN" percent="92.2"/>
+            <lowClouds id="LOW" percent="92.2"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
             <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="8.8"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T13:00:00Z" to="2024-12-25T14:00:00Z">
@@ -625,17 +449,17 @@
       <time datatype="forecast" from="2024-12-25T15:00:00Z" to="2024-12-25T15:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
             <temperature id="TTT" unit="celsius" value="11.9"/>
-            <windDirection id="dd" deg="179.1" name="S"/>
-            <windSpeed id="ff" mps="7.6" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.8"/>
-            <globalRadiation value="36.7" unit="W/m^2"/>
-            <humidity value="84.9" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1027.9"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
+            <windDirection id="dd" deg="181.8" name="S"/>
+            <windSpeed id="ff" mps="7.1" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.2"/>
+            <globalRadiation value="32.0" unit="W/m^2"/>
+            <humidity value="83.1" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1027.2"/>
+            <cloudiness id="NN" percent="92.7"/>
+            <lowClouds id="LOW" percent="92.7"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="0.1"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.4"/>
+            <highClouds id="HIGH" percent="0.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T14:00:00Z" to="2024-12-25T15:00:00Z">
@@ -646,18 +470,18 @@
       </time>
       <time datatype="forecast" from="2024-12-25T16:00:00Z" to="2024-12-25T16:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.5"/>
-            <windDirection id="dd" deg="177.5" name="S"/>
-            <windSpeed id="ff" mps="6.7" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.7"/>
-            <globalRadiation value="13.0" unit="W/m^2"/>
-            <humidity value="87.6" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1028.1"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
+            <temperature id="TTT" unit="celsius" value="11.7"/>
+            <windDirection id="dd" deg="181.1" name="S"/>
+            <windSpeed id="ff" mps="7.1" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.1"/>
+            <globalRadiation value="11.0" unit="W/m^2"/>
+            <humidity value="85.6" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1027.6"/>
+            <cloudiness id="NN" percent="93.3"/>
+            <lowClouds id="LOW" percent="93.3"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="15.4"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.6"/>
+            <highClouds id="HIGH" percent="0.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T15:00:00Z" to="2024-12-25T16:00:00Z">
@@ -668,562 +492,574 @@
       </time>
       <time datatype="forecast" from="2024-12-25T17:00:00Z" to="2024-12-25T17:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.4"/>
-            <windDirection id="dd" deg="175.9" name="S"/>
-            <windSpeed id="ff" mps="7.6" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.8"/>
+            <temperature id="TTT" unit="celsius" value="11.5"/>
+            <windDirection id="dd" deg="178.6" name="S"/>
+            <windSpeed id="ff" mps="7.2" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="12.1"/>
             <globalRadiation value="0.1" unit="W/m^2"/>
-            <humidity value="86.3" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1028.4"/>
-            <cloudiness id="NN" percent="94.1"/>
-            <lowClouds id="LOW" percent="85.8"/>
+            <humidity value="85.0" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1027.8"/>
+            <cloudiness id="NN" percent="94.3"/>
+            <lowClouds id="LOW" percent="73.0"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="50.6"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
+            <highClouds id="HIGH" percent="74.2"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.1"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T16:00:00Z" to="2024-12-25T17:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.7"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T18:00:00Z" to="2024-12-25T18:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.2"/>
-            <windDirection id="dd" deg="175.0" name="S"/>
-            <windSpeed id="ff" mps="7.0" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.5"/>
+            <temperature id="TTT" unit="celsius" value="11.3"/>
+            <windDirection id="dd" deg="180.7" name="S"/>
+            <windSpeed id="ff" mps="6.5" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.8"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="85.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1028.4"/>
-            <cloudiness id="NN" percent="84.6"/>
-            <lowClouds id="LOW" percent="83.6"/>
+            <humidity value="85.1" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1028.0"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="98.1"/>
             <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="37.2"/>
+            <highClouds id="HIGH" percent="98.4"/>
             <dewpointTemperature id="TD" unit="celsius" value="8.9"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T17:00:00Z" to="2024-12-25T18:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.4"/>
-<symbol id="PartlyCloud" number="3"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="1.2"/>
+<symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T19:00:00Z" to="2024-12-25T19:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.1"/>
-            <windDirection id="dd" deg="179.0" name="S"/>
-            <windSpeed id="ff" mps="6.4" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.5"/>
+            <temperature id="TTT" unit="celsius" value="11.3"/>
+            <windDirection id="dd" deg="183.5" name="S"/>
+            <windSpeed id="ff" mps="6.2" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.4"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="84.6" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1028.7"/>
+            <humidity value="85.7" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1028.3"/>
             <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="99.9"/>
-            <mediumClouds id="MEDIUM" percent="0.0"/>
-            <highClouds id="HIGH" percent="12.6"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.6"/>
+            <lowClouds id="LOW" percent="100.0"/>
+            <mediumClouds id="MEDIUM" percent="17.4"/>
+            <highClouds id="HIGH" percent="97.2"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.0"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T18:00:00Z" to="2024-12-25T19:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.1"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.4"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T20:00:00Z" to="2024-12-25T20:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.2"/>
-            <windDirection id="dd" deg="182.1" name="S"/>
-            <windSpeed id="ff" mps="6.5" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.4"/>
+            <temperature id="TTT" unit="celsius" value="11.5"/>
+            <windDirection id="dd" deg="186.1" name="S"/>
+            <windSpeed id="ff" mps="6.2" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.1"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="83.3" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1029.3"/>
+            <humidity value="84.0" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1029.0"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="76.5"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.5"/>
+            <mediumClouds id="MEDIUM" percent="71.5"/>
+            <highClouds id="HIGH" percent="4.2"/>
+            <dewpointTemperature id="TD" unit="celsius" value="8.9"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T19:00:00Z" to="2024-12-25T20:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="5.1"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="2.9"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T21:00:00Z" to="2024-12-25T21:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.2"/>
-            <windDirection id="dd" deg="180.2" name="S"/>
-            <windSpeed id="ff" mps="6.1" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.1"/>
+            <temperature id="TTT" unit="celsius" value="11.5"/>
+            <windDirection id="dd" deg="181.3" name="S"/>
+            <windSpeed id="ff" mps="6.9" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.2"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="83.6" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1029.7"/>
-            <cloudiness id="NN" percent="99.9"/>
-            <lowClouds id="LOW" percent="99.9"/>
-            <mediumClouds id="MEDIUM" percent="83.4"/>
-            <highClouds id="HIGH" percent="0.1"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.5"/>
+            <humidity value="84.2" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1029.2"/>
+            <cloudiness id="NN" percent="86.5"/>
+            <lowClouds id="LOW" percent="85.8"/>
+            <mediumClouds id="MEDIUM" percent="62.1"/>
+            <highClouds id="HIGH" percent="0.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="8.9"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-25T20:00:00Z" to="2024-12-25T21:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="6.3"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-25T22:00:00Z" to="2024-12-25T22:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="11.0"/>
-            <windDirection id="dd" deg="172.5" name="S"/>
-            <windSpeed id="ff" mps="6.7" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.2"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="84.9" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1029.7"/>
-            <cloudiness id="NN" percent="86.8"/>
-            <lowClouds id="LOW" percent="85.4"/>
-            <mediumClouds id="MEDIUM" percent="6.7"/>
-            <highClouds id="HIGH" percent="0.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.6"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-25T21:00:00Z" to="2024-12-25T22:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="9.5"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-25T23:00:00Z" to="2024-12-25T23:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.7"/>
-            <windDirection id="dd" deg="174.1" name="S"/>
-            <windSpeed id="ff" mps="6.6" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="11.4"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="87.7" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1029.9"/>
-            <cloudiness id="NN" percent="23.3"/>
-            <lowClouds id="LOW" percent="15.5"/>
-            <mediumClouds id="MEDIUM" percent="10.1"/>
-            <highClouds id="HIGH" percent="0.1"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.7"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-25T22:00:00Z" to="2024-12-25T23:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="8.2"/>
-<symbol id="LightCloud" number="2"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T00:00:00Z" to="2024-12-26T00:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.4"/>
-            <windDirection id="dd" deg="170.4" name="S"/>
-            <windSpeed id="ff" mps="7.0" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="10.9"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="90.3" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1030.1"/>
-            <cloudiness id="NN" percent="42.0"/>
-            <lowClouds id="LOW" percent="37.5"/>
-            <mediumClouds id="MEDIUM" percent="3.2"/>
-            <highClouds id="HIGH" percent="5.4"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.9"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-25T23:00:00Z" to="2024-12-26T00:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="7.2"/>
-<symbol id="PartlyCloud" number="3"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T01:00:00Z" to="2024-12-26T01:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.3"/>
-            <windDirection id="dd" deg="176.6" name="S"/>
-            <windSpeed id="ff" mps="6.5" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="10.3"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="91.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1030.5"/>
-            <cloudiness id="NN" percent="55.5"/>
-            <lowClouds id="LOW" percent="46.0"/>
-            <mediumClouds id="MEDIUM" percent="9.8"/>
-            <highClouds id="HIGH" percent="8.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.9"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T00:00:00Z" to="2024-12-26T01:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="8.8"/>
-<symbol id="PartlyCloud" number="3"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T02:00:00Z" to="2024-12-26T02:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.5"/>
-            <windDirection id="dd" deg="178.2" name="S"/>
-            <windSpeed id="ff" mps="6.0" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="9.9"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="87.9" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1030.7"/>
-            <cloudiness id="NN" percent="98.5"/>
-            <lowClouds id="LOW" percent="81.2"/>
-            <mediumClouds id="MEDIUM" percent="90.5"/>
-            <highClouds id="HIGH" percent="19.4"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.6"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T01:00:00Z" to="2024-12-26T02:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="13.0"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T03:00:00Z" to="2024-12-26T03:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.6"/>
-            <windDirection id="dd" deg="173.0" name="S"/>
-            <windSpeed id="ff" mps="6.3" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="9.5"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="85.9" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1030.8"/>
-            <cloudiness id="NN" percent="98.8"/>
-            <lowClouds id="LOW" percent="48.5"/>
-            <mediumClouds id="MEDIUM" percent="78.0"/>
-            <highClouds id="HIGH" percent="71.1"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.3"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T02:00:00Z" to="2024-12-26T03:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="15.7"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T04:00:00Z" to="2024-12-26T04:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.5"/>
-            <windDirection id="dd" deg="172.4" name="S"/>
-            <windSpeed id="ff" mps="6.0" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="9.1"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="85.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1030.9"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="92.6"/>
-            <mediumClouds id="MEDIUM" percent="62.9"/>
-            <highClouds id="HIGH" percent="99.6"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.2"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T03:00:00Z" to="2024-12-26T04:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="13.6"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T05:00:00Z" to="2024-12-26T05:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.3"/>
-            <windDirection id="dd" deg="169.4" name="S"/>
-            <windSpeed id="ff" mps="5.5" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="8.9"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="86.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1031.0"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="99.9"/>
-            <mediumClouds id="MEDIUM" percent="92.5"/>
-            <highClouds id="HIGH" percent="98.8"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.2"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T04:00:00Z" to="2024-12-26T05:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="9.7"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T06:00:00Z" to="2024-12-26T06:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.2"/>
-            <windDirection id="dd" deg="161.8" name="S"/>
-            <windSpeed id="ff" mps="5.2" beaufort="3" name="Gentle breeze"/>
-            <windGust id="ff_gust" mps="8.6"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="87.7" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1031.2"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="98.4"/>
-            <highClouds id="HIGH" percent="99.9"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.3"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T05:00:00Z" to="2024-12-26T06:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="6.3"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T07:00:00Z" to="2024-12-26T07:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.0"/>
-            <windDirection id="dd" deg="156.3" name="SE"/>
-            <windSpeed id="ff" mps="5.3" beaufort="3" name="Gentle breeze"/>
-            <windGust id="ff_gust" mps="8.5"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="88.0" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1031.4"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="99.8"/>
-            <highClouds id="HIGH" percent="42.7"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.1"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T06:00:00Z" to="2024-12-26T07:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="6.6"/>
-<symbol id="Cloud" number="4"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T08:00:00Z" to="2024-12-26T08:00:00Z">
-         <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.0"/>
-            <windDirection id="dd" deg="154.4" name="SE"/>
-            <windSpeed id="ff" mps="5.8" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="8.8"/>
-            <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="88.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1032.0"/>
-            <cloudiness id="NN" percent="100.0"/>
-            <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="100.0"/>
-            <highClouds id="HIGH" percent="14.1"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.2"/>
-         </location>
-      </time>
-      <time datatype="forecast" from="2024-12-26T07:00:00Z" to="2024-12-26T08:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
             <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="2.5"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
-      <time datatype="forecast" from="2024-12-26T09:00:00Z" to="2024-12-26T09:00:00Z">
+      <time datatype="forecast" from="2024-12-25T22:00:00Z" to="2024-12-25T22:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.0"/>
-            <windDirection id="dd" deg="155.2" name="SE"/>
-            <windSpeed id="ff" mps="6.0" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="8.9"/>
+            <temperature id="TTT" unit="celsius" value="11.2"/>
+            <windDirection id="dd" deg="174.7" name="S"/>
+            <windSpeed id="ff" mps="7.4" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.5"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="90.4" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1032.4"/>
+            <humidity value="85.3" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1029.3"/>
+            <cloudiness id="NN" percent="23.5"/>
+            <lowClouds id="LOW" percent="21.7"/>
+            <mediumClouds id="MEDIUM" percent="2.0"/>
+            <highClouds id="HIGH" percent="0.1"/>
+            <dewpointTemperature id="TD" unit="celsius" value="8.9"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-25T21:00:00Z" to="2024-12-25T22:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
+<symbol id="LightCloud" number="2"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-25T23:00:00Z" to="2024-12-25T23:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.8"/>
+            <windDirection id="dd" deg="171.4" name="S"/>
+            <windSpeed id="ff" mps="6.6" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.7"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="89.1" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1029.7"/>
+            <cloudiness id="NN" percent="98.1"/>
+            <lowClouds id="LOW" percent="96.8"/>
+            <mediumClouds id="MEDIUM" percent="75.8"/>
+            <highClouds id="HIGH" percent="0.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.1"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-25T22:00:00Z" to="2024-12-25T23:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.0"/>
+<symbol id="Cloud" number="4"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T00:00:00Z" to="2024-12-26T00:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.9"/>
+            <windDirection id="dd" deg="173.2" name="S"/>
+            <windSpeed id="ff" mps="7.1" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.5"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="88.9" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1030.0"/>
+            <cloudiness id="NN" percent="64.4"/>
+            <lowClouds id="LOW" percent="59.2"/>
+            <mediumClouds id="MEDIUM" percent="40.6"/>
+            <highClouds id="HIGH" percent="0.1"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-25T23:00:00Z" to="2024-12-26T00:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="1.1"/>
+<symbol id="PartlyCloud" number="3"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T01:00:00Z" to="2024-12-26T01:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="11.0"/>
+            <windDirection id="dd" deg="174.5" name="S"/>
+            <windSpeed id="ff" mps="7.5" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="11.2"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="88.7" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1030.1"/>
+            <cloudiness id="NN" percent="78.3"/>
+            <lowClouds id="LOW" percent="46.6"/>
+            <mediumClouds id="MEDIUM" percent="71.1"/>
+            <highClouds id="HIGH" percent="2.2"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T00:00:00Z" to="2024-12-26T01:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="7.0"/>
+<symbol id="PartlyCloud" number="3"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T02:00:00Z" to="2024-12-26T02:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.9"/>
+            <windDirection id="dd" deg="172.1" name="S"/>
+            <windSpeed id="ff" mps="6.9" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="10.9"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="90.0" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1030.1"/>
+            <cloudiness id="NN" percent="82.2"/>
+            <lowClouds id="LOW" percent="54.0"/>
+            <mediumClouds id="MEDIUM" percent="74.1"/>
+            <highClouds id="HIGH" percent="16.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.4"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T01:00:00Z" to="2024-12-26T02:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="11.5"/>
+<symbol id="PartlyCloud" number="3"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T03:00:00Z" to="2024-12-26T03:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.9"/>
+            <windDirection id="dd" deg="173.2" name="S"/>
+            <windSpeed id="ff" mps="7.3" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="10.6"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="89.0" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1030.1"/>
+            <cloudiness id="NN" percent="70.8"/>
+            <lowClouds id="LOW" percent="40.5"/>
+            <mediumClouds id="MEDIUM" percent="17.3"/>
+            <highClouds id="HIGH" percent="44.2"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T02:00:00Z" to="2024-12-26T03:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="12.7"/>
+<symbol id="PartlyCloud" number="3"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T04:00:00Z" to="2024-12-26T04:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.9"/>
+            <windDirection id="dd" deg="175.1" name="S"/>
+            <windSpeed id="ff" mps="6.7" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="9.9"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="87.6" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1030.3"/>
+            <cloudiness id="NN" percent="99.6"/>
+            <lowClouds id="LOW" percent="97.9"/>
+            <mediumClouds id="MEDIUM" percent="18.9"/>
+            <highClouds id="HIGH" percent="74.3"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.0"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T03:00:00Z" to="2024-12-26T04:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="12.9"/>
+<symbol id="Cloud" number="4"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T05:00:00Z" to="2024-12-26T05:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.8"/>
+            <windDirection id="dd" deg="172.2" name="S"/>
+            <windSpeed id="ff" mps="6.5" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="9.2"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="87.2" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1030.3"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="99.8"/>
+            <mediumClouds id="MEDIUM" percent="88.1"/>
+            <highClouds id="HIGH" percent="89.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="8.8"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T04:00:00Z" to="2024-12-26T05:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="14.5"/>
+<symbol id="Cloud" number="4"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T06:00:00Z" to="2024-12-26T06:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.7"/>
+            <windDirection id="dd" deg="169.8" name="S"/>
+            <windSpeed id="ff" mps="6.8" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="8.8"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="86.5" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1030.4"/>
+            <cloudiness id="NN" percent="99.9"/>
+            <lowClouds id="LOW" percent="99.6"/>
+            <mediumClouds id="MEDIUM" percent="75.8"/>
+            <highClouds id="HIGH" percent="78.7"/>
+            <dewpointTemperature id="TD" unit="celsius" value="8.6"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T05:00:00Z" to="2024-12-26T06:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="19.7"/>
+<symbol id="Cloud" number="4"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T07:00:00Z" to="2024-12-26T07:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.6"/>
+            <windDirection id="dd" deg="169.6" name="S"/>
+            <windSpeed id="ff" mps="6.6" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="8.7"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="88.5" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1030.9"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="100.0"/>
+            <mediumClouds id="MEDIUM" percent="87.5"/>
+            <highClouds id="HIGH" percent="66.5"/>
+            <dewpointTemperature id="TD" unit="celsius" value="8.8"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T06:00:00Z" to="2024-12-26T07:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="9.0"/>
+<symbol id="Cloud" number="4"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T08:00:00Z" to="2024-12-26T08:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.5"/>
+            <windDirection id="dd" deg="173.0" name="S"/>
+            <windSpeed id="ff" mps="6.2" beaufort="4" name="Moderate breeze"/>
+            <windGust id="ff_gust" mps="8.5"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="90.7" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1031.4"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="100.0"/>
-            <highClouds id="HIGH" percent="1.5"/>
-            <dewpointTemperature id="TD" unit="celsius" value="8.5"/>
+            <highClouds id="HIGH" percent="93.4"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.0"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T07:00:00Z" to="2024-12-26T08:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="3.9"/>
+<symbol id="Cloud" number="4"/>
+         </location>
+      </time>
+      <time datatype="forecast" from="2024-12-26T09:00:00Z" to="2024-12-26T09:00:00Z">
+         <location altitude="0" latitude="54.4044" longitude="-8.5602">
+            <temperature id="TTT" unit="celsius" value="10.2"/>
+            <windDirection id="dd" deg="169.1" name="S"/>
+            <windSpeed id="ff" mps="5.4" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="8.7"/>
+            <globalRadiation value="0.0" unit="W/m^2"/>
+            <humidity value="93.6" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1032.0"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="100.0"/>
+            <mediumClouds id="MEDIUM" percent="100.0"/>
+            <highClouds id="HIGH" percent="100.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.3"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T08:00:00Z" to="2024-12-26T09:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="0.1"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="4.7"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T10:00:00Z" to="2024-12-26T10:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.1"/>
-            <windDirection id="dd" deg="152.2" name="SE"/>
-            <windSpeed id="ff" mps="5.5" beaufort="4" name="Moderate breeze"/>
-            <windGust id="ff_gust" mps="8.9"/>
-            <globalRadiation value="5.1" unit="W/m^2"/>
-            <humidity value="93.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1032.6"/>
+            <temperature id="TTT" unit="celsius" value="10.2"/>
+            <windDirection id="dd" deg="164.9" name="S"/>
+            <windSpeed id="ff" mps="5.1" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="8.3"/>
+            <globalRadiation value="5.6" unit="W/m^2"/>
+            <humidity value="93.6" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1032.4"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="100.0"/>
-            <highClouds id="HIGH" percent="96.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.1"/>
+            <mediumClouds id="MEDIUM" percent="99.7"/>
+            <highClouds id="HIGH" percent="100.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.2"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T09:00:00Z" to="2024-12-26T10:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.0" probability="1.6"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="6.5"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T11:00:00Z" to="2024-12-26T11:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
             <temperature id="TTT" unit="celsius" value="10.3"/>
-            <windDirection id="dd" deg="157.2" name="SE"/>
-            <windSpeed id="ff" mps="5.3" beaufort="3" name="Gentle breeze"/>
-            <windGust id="ff_gust" mps="8.9"/>
-            <globalRadiation value="15.0" unit="W/m^2"/>
-            <humidity value="94.2" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1032.9"/>
+            <windDirection id="dd" deg="165.4" name="S"/>
+            <windSpeed id="ff" mps="5.0" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="8.4"/>
+            <globalRadiation value="19.1" unit="W/m^2"/>
+            <humidity value="93.7" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1032.6"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
-            <mediumClouds id="MEDIUM" percent="99.0"/>
+            <mediumClouds id="MEDIUM" percent="7.0"/>
             <highClouds id="HIGH" percent="100.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.4"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.3"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T10:00:00Z" to="2024-12-26T11:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="6.1"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="4.9"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T12:00:00Z" to="2024-12-26T12:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.4"/>
-            <windDirection id="dd" deg="155.5" name="SE"/>
-            <windSpeed id="ff" mps="5.0" beaufort="3" name="Gentle breeze"/>
-            <windGust id="ff_gust" mps="8.8"/>
-            <globalRadiation value="21.0" unit="W/m^2"/>
-            <humidity value="95.1" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1032.9"/>
+            <temperature id="TTT" unit="celsius" value="10.3"/>
+            <windDirection id="dd" deg="160.1" name="S"/>
+            <windSpeed id="ff" mps="4.6" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="8.1"/>
+            <globalRadiation value="31.1" unit="W/m^2"/>
+            <humidity value="93.9" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1032.5"/>
             <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
             <mediumClouds id="MEDIUM" percent="99.9"/>
             <highClouds id="HIGH" percent="100.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.7"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T11:00:00Z" to="2024-12-26T12:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="8.4"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="5.9"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T13:00:00Z" to="2024-12-26T13:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.4"/>
-            <windDirection id="dd" deg="187.1" name="S"/>
-            <windSpeed id="ff" mps="3.1" beaufort="2" name="Light breeze"/>
-            <windGust id="ff_gust" mps="6.6"/>
-            <globalRadiation value="50.2" unit="W/m^2"/>
-            <humidity value="95.9" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1032.2"/>
-            <cloudiness id="NN" percent="98.8"/>
+            <temperature id="TTT" unit="celsius" value="10.2"/>
+            <windDirection id="dd" deg="156.6" name="SE"/>
+            <windSpeed id="ff" mps="4.3" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="7.8"/>
+            <globalRadiation value="23.2" unit="W/m^2"/>
+            <humidity value="95.7" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1032.4"/>
+            <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.8"/>
+            <mediumClouds id="MEDIUM" percent="100.0"/>
+            <highClouds id="HIGH" percent="100.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="9.6"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T12:00:00Z" to="2024-12-26T13:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="14.2"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="11.5"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T14:00:00Z" to="2024-12-26T14:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.6"/>
-            <windDirection id="dd" deg="188.5" name="S"/>
-            <windSpeed id="ff" mps="3.4" beaufort="3" name="Gentle breeze"/>
-            <windGust id="ff_gust" mps="6.3"/>
-            <globalRadiation value="47.1" unit="W/m^2"/>
-            <humidity value="94.8" unit="percent"/>
+            <temperature id="TTT" unit="celsius" value="10.5"/>
+            <windDirection id="dd" deg="159.3" name="S"/>
+            <windSpeed id="ff" mps="5.0" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="7.5"/>
+            <globalRadiation value="16.8" unit="W/m^2"/>
+            <humidity value="96.6" unit="percent"/>
             <pressure id="pr" unit="hPa" value="1032.1"/>
-            <cloudiness id="NN" percent="98.8"/>
+            <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.8"/>
+            <mediumClouds id="MEDIUM" percent="100.0"/>
+            <highClouds id="HIGH" percent="95.4"/>
+            <dewpointTemperature id="TD" unit="celsius" value="10.0"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T13:00:00Z" to="2024-12-26T14:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="15.0"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="15.2"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T15:00:00Z" to="2024-12-26T15:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
             <temperature id="TTT" unit="celsius" value="10.8"/>
-            <windDirection id="dd" deg="182.2" name="S"/>
-            <windSpeed id="ff" mps="4.2" beaufort="3" name="Gentle breeze"/>
-            <windGust id="ff_gust" mps="6.3"/>
-            <globalRadiation value="31.1" unit="W/m^2"/>
-            <humidity value="92.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1032.0"/>
-            <cloudiness id="NN" percent="98.8"/>
+            <windDirection id="dd" deg="166.1" name="S"/>
+            <windSpeed id="ff" mps="5.0" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="7.3"/>
+            <globalRadiation value="11.4" unit="W/m^2"/>
+            <humidity value="96.7" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1031.9"/>
+            <cloudiness id="NN" percent="100.0"/>
             <lowClouds id="LOW" percent="100.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.7"/>
+            <mediumClouds id="MEDIUM" percent="100.0"/>
+            <highClouds id="HIGH" percent="97.5"/>
+            <dewpointTemperature id="TD" unit="celsius" value="10.3"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T14:00:00Z" to="2024-12-26T15:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="11.8"/>
+            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="10.5"/>
 <symbol id="Cloud" number="4"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T16:00:00Z" to="2024-12-26T16:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.7"/>
-            <windDirection id="dd" deg="171.5" name="S"/>
-            <windSpeed id="ff" mps="4.6" beaufort="3" name="Gentle breeze"/>
-            <windGust id="ff_gust" mps="6.4"/>
-            <globalRadiation value="12.4" unit="W/m^2"/>
-            <humidity value="93.0" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1031.9"/>
-            <cloudiness id="NN" percent="98.8"/>
-            <lowClouds id="LOW" percent="98.1"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.7"/>
+            <temperature id="TTT" unit="celsius" value="11.0"/>
+            <windDirection id="dd" deg="172.4" name="S"/>
+            <windSpeed id="ff" mps="4.5" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="7.3"/>
+            <globalRadiation value="4.5" unit="W/m^2"/>
+            <humidity value="96.8" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1032.0"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="100.0"/>
+            <mediumClouds id="MEDIUM" percent="100.0"/>
+            <highClouds id="HIGH" percent="100.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="10.5"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T15:00:00Z" to="2024-12-26T16:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="6.3"/>
-<symbol id="Cloud" number="4"/>
+            <precipitation unit="mm" value="0.1" minvalue="0.1" maxvalue="0.2" probability="16.1"/>
+<symbol id="Drizzle" number="46"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T17:00:00Z" to="2024-12-26T17:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.6"/>
-            <windDirection id="dd" deg="167.2" name="S"/>
-            <windSpeed id="ff" mps="4.9" beaufort="3" name="Gentle breeze"/>
-            <windGust id="ff_gust" mps="6.4"/>
+            <temperature id="TTT" unit="celsius" value="11.1"/>
+            <windDirection id="dd" deg="165.1" name="S"/>
+            <windSpeed id="ff" mps="5.0" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="7.3"/>
             <globalRadiation value="0.1" unit="W/m^2"/>
-            <humidity value="93.8" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1032.0"/>
-            <cloudiness id="NN" percent="98.8"/>
-            <lowClouds id="LOW" percent="99.6"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.7"/>
+            <humidity value="96.4" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1032.1"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="100.0"/>
+            <mediumClouds id="MEDIUM" percent="100.0"/>
+            <highClouds id="HIGH" percent="100.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="10.6"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T16:00:00Z" to="2024-12-26T17:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="7.8"/>
-<symbol id="Cloud" number="4"/>
+            <precipitation unit="mm" value="0.1" minvalue="0.1" maxvalue="0.2" probability="19.4"/>
+<symbol id="Drizzle" number="46"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T18:00:00Z" to="2024-12-26T18:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <temperature id="TTT" unit="celsius" value="10.7"/>
-            <windDirection id="dd" deg="164.6" name="S"/>
-            <windSpeed id="ff" mps="4.8" beaufort="3" name="Gentle breeze"/>
-            <windGust id="ff_gust" mps="6.3"/>
+            <temperature id="TTT" unit="celsius" value="11.1"/>
+            <windDirection id="dd" deg="167.5" name="S"/>
+            <windSpeed id="ff" mps="5.1" beaufort="3" name="Gentle breeze"/>
+            <windGust id="ff_gust" mps="7.5"/>
             <globalRadiation value="0.0" unit="W/m^2"/>
-            <humidity value="94.4" unit="percent"/>
-            <pressure id="pr" unit="hPa" value="1032.0"/>
-            <cloudiness id="NN" percent="98.8"/>
-            <lowClouds id="LOW" percent="100.0"/>
-            <dewpointTemperature id="TD" unit="celsius" value="9.8"/>
+            <humidity value="96.1" unit="percent"/>
+            <pressure id="pr" unit="hPa" value="1032.2"/>
+            <cloudiness id="NN" percent="100.0"/>
+            <lowClouds id="LOW" percent="86.8"/>
+            <mediumClouds id="MEDIUM" percent="100.0"/>
+            <highClouds id="HIGH" percent="100.0"/>
+            <dewpointTemperature id="TD" unit="celsius" value="10.5"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T17:00:00Z" to="2024-12-26T18:00:00Z">
          <location altitude="0" latitude="54.4044" longitude="-8.5602">
-            <precipitation unit="mm" value="0.0" minvalue="0.0" maxvalue="0.1" probability="8.8"/>
-<symbol id="Cloud" number="4"/>
+            <precipitation unit="mm" value="0.1" minvalue="0.1" maxvalue="0.2" probability="22.3"/>
+<symbol id="Drizzle" number="46"/>
          </location>
       </time>
       <time datatype="forecast" from="2024-12-26T19:00:00Z" to="2024-12-26T19:00:00Z">

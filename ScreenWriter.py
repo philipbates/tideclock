@@ -70,6 +70,7 @@ def display_error(error_source):
 
 
 if __name__ == "__main__":
+    print('Running main function.')
     try:
         # Example usage of write_to_screen function
         write_to_screen('example_image.png', 10)

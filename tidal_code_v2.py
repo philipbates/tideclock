@@ -320,30 +320,46 @@ df_predicted_cut = df_predicted[df_predicted['time'] > df_historical['time'].max
 df_historical_cut = df_historical[df_historical['time'] < df_predicted_cut['time'].min()]
 df_merged = pd.concat([df_historical_cut, df_predicted_cut])
 df_merged = df_predicted
-img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
+
+
+# write to screen using ScreenWriter.py
+from ScreenWriter import write_to_screen
+# every minute until the script is killed
+# start a clock at the current time
+script_start_time = datetime.now(timezone.utc).timestamp()
+while True:
+    img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
+    write_to_screen(img, 60)
+    elapsed_time = datetime.now(timezone.utc) - datetime.fromtimestamp(script_start_time, timezone.utc)
+    if elapsed_time > timedelta(hours=12):
+        df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
+        df_predicted_cut = df_predicted[df_predicted['time'] > df_historical['time'].max()]
+        df_historical_cut = df_historical[df_historical['time'] < df_predicted_cut['time'].min()]
+        df_merged = pd.concat([df_historical_cut, df_predicted_cut])
+        df_merged = df_predicted
 
 
 
 #################################################################################
 ####### Weather Data ##########
-time_now = datetime.now(timezone.utc)
+# time_now = datetime.now(timezone.utc)
 # Get weather data from the Met Eireann website
 # weather_data = get_MetEireann.fetch_parse_data()
 # print(weather_data)
 # create_weather_image(weather_data, img, draw, font)
 
 
-# Plot the tide data
-plt.figure(figsize=(12, 6))
-plot_tide_data(df_historical, 'Historical Tide Level (LAT)', 'blue')
-plot_tide_data(df_predicted, 'Predicted Tide Level (LAT)', 'red')
-plot_tide_data(df_merged, 'Merged Tide Level (LAT)', 'green')
-plt.xlabel('Time')
-plt.ylabel('Tide Level (m relative to LAT)')
-plt.title('Tide Level Over Time (Sligo Station)')
-plt.grid(True)
-plt.legend()
-plt.tight_layout()
-plt.show()
+# # Plot the tide data
+# plt.figure(figsize=(12, 6))
+# plot_tide_data(df_historical, 'Historical Tide Level (LAT)', 'blue')
+# plot_tide_data(df_predicted, 'Predicted Tide Level (LAT)', 'red')
+# plot_tide_data(df_merged, 'Merged Tide Level (LAT)', 'green')
+# plt.xlabel('Time')
+# plt.ylabel('Tide Level (m relative to LAT)')
+# plt.title('Tide Level Over Time (Sligo Station)')
+# plt.grid(True)
+# plt.legend()
+# plt.tight_layout()
+# plt.show()
 
 

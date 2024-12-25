@@ -11,9 +11,7 @@
 ****************************************************************
 '''
 
-import os
 import time
-import traceback
 from PIL import Image, ImageDraw, ImageFont
 from lib.waveshare_epd import epd4in26
 
@@ -23,7 +21,9 @@ from lib.waveshare_epd import epd4in26
 print('Initializing and clearing screen.')
 epd = epd4in26.EPD() # Create object for display functions
 epd.init()
+print('Screen initialized.')
 epd.Clear()
+print('Screen cleared.')
 
 
 
@@ -36,14 +36,18 @@ def write_to_screen(image, sleep_seconds):
     # Open the template
     picfile = r"tide_plot.png"
     screen_output_file = Image.open(picfile)
+    print('Screen output file opened.') # for debugging
     # Initialize the drawing context with template as background
     h_image.paste(screen_output_file, (0, 0))
+    print('Screen output file pasted.') # for debugging
     epd.display(epd.getbuffer(h_image))
+    print('Screen output file displayed.') # for debugging
     # Sleep
     epd.sleep() # Put screen to sleep to prevent damage
     print('Sleeping for ' + str(sleep_seconds) +'.')
     time.sleep(sleep_seconds) # Determines refresh rate on data
     epd.init() # Re-Initialize screen
+    print('Screen re-initialized.') # for debugging
 
 
 # define function for displaying error
@@ -71,4 +75,4 @@ if __name__ == "__main__":
         write_to_screen('example_image.png', 10)
     except Exception as e:
         display_error('main')
-        print(traceback.format_exc())
+

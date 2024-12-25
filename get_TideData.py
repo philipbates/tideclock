@@ -11,6 +11,31 @@ import numpy as np
 
 ''' The purpose of this script is only to return a list of predicted and past tidal data in a dataframe format.'''
 
+############# JSON DATA FOR HIGH/LOW TIDE TIMES #############
+def create_high_low_tide_times_url():
+    ''' returns high/low tide times from sligo harbour tide bouy'''
+    baseurl = r"https://erddap.marine.ie/erddap/tabledap/IMI_TidePrediction_HighLow"
+    responsetype = r".json"
+    querystart = "?"
+    querytime = "time"
+    querysep = "%2C"
+    querytidetimecat = "tide_time_category"
+    quertideheightlat = "tide_height_LAT"
+    querystation = "stationID"
+    # querywater = "Water_Level_LAT" the tide predicitions are not at this water level
+    querywater = "Water_Level_OD_Malin"
+    variablesep = "&"
+    stationname = r"stationID=%22Sligo%22"
+    url =  (baseurl + responsetype + querystart +
+           querystation + querysep +
+            querytime + querysep +
+            querytidetimecat + querysep +
+            quertideheightlat +
+            variablesep + stationname)
+    return url
+
+
+
 ############# JSON DATA FOR **PAST** TIDE LEVELS #############
 # Function to create URL for tide data
 
@@ -85,6 +110,14 @@ def process_predicted_data(data):
     df['tide_level'] = pd.to_numeric(df['sea_surface_height'])  # Convert water level to numeric
     return df
 
+def process_high_low_tide_data(data):
+    df = pd.DataFrame(data['table']['rows'], columns=data['table']['columnNames'])
+    print(df.columns)
+    df['time'] = pd.to_datetime(df['time'])
+    df['tide_time_category'] = df['tide_time_category'].str.replace('High', 'High Tide')
+    df['tide_time_category'] = df['tide_time_category'].str.replace('Low', 'Low Tide')
+    return df
+
 def fetch_and_format_tide_data():
     ########## Historical Tide Data ##########
     time_range = 10
@@ -102,4 +135,10 @@ def fetch_and_format_tide_data():
     ssl._create_default_https_context = ssl._create_unverified_context
     data_predicted = fetch_data(url)
     df_predicted = process_predicted_data(data_predicted)
-    return df_historical, df_predicted
+
+    ################## High/Low Tide Times ##################
+    url = create_high_low_tide_times_url()
+    ssl._create_default_https_context = ssl._create_unverified_context
+    data_high_low = fetch_data(url)
+    df_high_low = process_high_low_tide_data(data_high_low)
+    return df_historical, df_predicted, df_high_low

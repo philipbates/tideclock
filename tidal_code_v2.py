@@ -65,13 +65,51 @@ def plot_tide_data(df, label, color):
     plt.plot(df['time'], df['tide_level'], label=label, color=color)
 
 def draw_point(draw, ptx, pty, radius):
+    ptradius = max(1, radius +1)
+    draw.ellipse((ptx - ptradius, pty - ptradius, ptx + ptradius, pty + ptradius), fill='white')
     ptradius = radius
     draw.ellipse((ptx - ptradius, pty - ptradius, ptx + ptradius, pty + ptradius), fill='black')
-    ptradius = min(1, radius - 2)
+    ptradius = max(1, radius - 3)
     draw.ellipse((ptx - ptradius, pty - ptradius, ptx + ptradius, pty + ptradius), fill='white')
 
+def draw_diamond(draw, center_x, center_y, size):
+    half_size = size / 2
+    h_squash = 0.8
+    points = [
+        (center_x, center_y - half_size),  # Top
+        (center_x + half_size*h_squash, center_y),  # Right
+        (center_x, center_y + half_size),  # Bottom
+        (center_x - half_size*h_squash, center_y)   # Left
+    ]
+    draw.polygon(points, fill='white', outline='grey', width=3)
+
+def mark_tide_time(draw, mapper, df_highlow_tides):
+    # Draw a point at the time
+    # Draw a line down from the high tide time, colored black
+    # place text at the bottom of the line
+    font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=44)
+
+    for index, row in df_highlow_tides.iterrows():
+        label_time = datetime.fromtimestamp(row['closest_time'], timezone.utc).strftime('%H:%M')
+        tide_xy = [row['closest_time'], row['closest_water_level']]
+        tide_x, tide_y = mapper.map_point(tide_xy)
+        tide_type = row['tide_time_category']
+        draw_point(draw, tide_x, tide_y, 6)
+        # draw the line
+        if tide_type == "HIGH":
+            draw.line((tide_x, tide_y, tide_x, tide_y + 50), fill='white')
+        elif tide_type == "LOW":
+            draw.line((tide_x, tide_y, tide_x, tide_y - 50), fill='black')
+        # add the label
+        t_xoff = 4
+        if tide_type == "HIGH":
+            draw.text((tide_x+t_xoff, tide_y + 58), label_time, fill='white', font=font, anchor='mt')
+        elif tide_type == "LOW":
+            draw.text((tide_x-t_xoff, tide_y - 58), label_time, fill='black', font=font, anchor='ms')
+        print(f"Tide time: {label_time} located at {tide_x, tide_y}")
+
 # Function to create and save tide plot image
-def create_tide_plot_image(df, filename):
+def create_tide_plot_image(df, df_high_low, filename):
     
     img_dimensions = (800, 480)
     img = Image.new('RGB', img_dimensions, 'white')
@@ -84,11 +122,13 @@ def create_tide_plot_image(df, filename):
     print(f"current_time: {current_time}")
     print(f"closest_index: {closest_index}")
 
+
+
     # create a 24hr window around the current time
-    time_lower_limit_24hr = current_time - 12 * 60 * 60
-    time_upper_limit_24hr = current_time + 12 * 60 * 60
-    time_lower_limit_full = current_time - 6 * 24 * 60 * 60
-    time_upper_limit_full = current_time + 6 * 24 * 60 * 60
+    time_lower_limit_24hr = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
+    time_upper_limit_24hr = time_lower_limit_24hr + 24 * 60 * 60
+    time_lower_limit_full = timestamps.min()
+    time_upper_limit_full = timestamps.max()
     tide_upper_limit =  2
     tide_lower_limit = -2
     time_span_24hr = [time_lower_limit_24hr, time_upper_limit_24hr]
@@ -98,12 +138,11 @@ def create_tide_plot_image(df, filename):
 
     # get the tide data
     water_levels = df['tide_level'].values
-    water_levels_smooth = df['tide_level'].rolling(window=15, center=True).mean().values
 
     # plot in the area Y 0 to 80 all the predicted data
     # plot in the area Y 80 to 320 only the data for the current 24 hrs
-    px_for_weather = (0, 800, 0, 80)
-    px_for_24hr = (0, 800, 100, 300)
+    # px_for_weather = (0, 800, 0, 80)
+    px_for_24hr = (0, 800, 30, 300)
     px_for_full = (0, 800, 310, 470)
     mapper_24hr = DataToPlotAreaMapper(time_span_24hr, tide_span, px_for_24hr, img_dimensions)
     mapper_full = DataToPlotAreaMapper(time_span_full, tide_span, px_for_full, img_dimensions)
@@ -119,52 +158,81 @@ def create_tide_plot_image(df, filename):
     timestamps24hr = timestamps[(timestamps >= time_span_24hr[0]) & (timestamps <= time_span_24hr[1])]
     tide_24hr = water_levels[(timestamps >= time_span_24hr[0]) & (timestamps <= time_span_24hr[1])]
     past_times = timestamps[(timestamps >= time_span_24hr[0]) & (timestamps <= current_time)]
-    past_water_levels = water_levels_smooth[(timestamps >= time_span_24hr[0]) & (timestamps <= current_time)]
+    past_water_levels = water_levels[(timestamps >= time_span_24hr[0]) & (timestamps <= current_time)]
     future_times = timestamps[(timestamps > current_time) & (timestamps <= time_span_24hr[1])]
-    future_water_levels = water_levels_smooth[(timestamps > current_time) & (timestamps <= time_span_24hr[1])]
+    future_water_levels = water_levels[(timestamps > current_time) & (timestamps <= time_span_24hr[1])]
 
-
+    #draw the shaded data plot
     x_px_24r, y_px_24hr = mapper_24hr.map_vectors(timestamps24hr, tide_24hr)
     points = list(zip(x_px_24r, y_px_24hr ))
-    draw.polygon([(0, 480)] + points + [(800, 480)], fill='lightgrey')
+    draw.polygon([(0, 480)] + points + [(800, 480)], fill='black')
     
     # Draw a solid line for the water level at all timestamps up to the present time
-
     x_normalized, y_normalized = mapper_24hr.map_vectors(past_times, past_water_levels)
     points = list(zip(x_normalized, y_normalized))
-    draw.line(points, fill='black', width=2)
-    
+    draw.line(points, fill='grey', width=2)
+
+
+    ######################################################################################
+    ####### current,  high and low tide times marked #######
     # Mark the current time with a sphere
     ptx, pty = mapper_24hr.map_point(pt_now)
-    draw_point(draw, ptx, pty, radius=4)
+    # draw_point(draw, ptx, pty, radius=6)
+    draw_diamond(draw, ptx, pty, size=20)
+
+    # Find the next four high and low tide entries after the current time
+    current_time_dt = pd.to_datetime(time_lower_limit_24hr, unit='s', utc=True)
+    next_high_low_tides = df_high_low[df_high_low['time'] > current_time_dt].head(4)
+    print(next_high_low_tides)
+
+
+    for index, row in next_high_low_tides.iterrows():
+        closest_index = np.abs(df['time'] - row['time']).argmin()
+        closest_time = timestamps[closest_index]
+        closest_water_level = water_levels[closest_index]
+        print(f"Closest time: {closest_time}, Closest water level: {closest_water_level}")
+        next_high_low_tides.at[index, 'closest_time'] = closest_time
+        next_high_low_tides.at[index, 'closest_water_level'] = closest_water_level
+
+
+    mark_tide_time(draw, mapper_24hr, next_high_low_tides)
+    # treat the high tide time
+
 
     
-    # Find next Future high and low tide
-    max_index = np.argmax(future_water_levels)
-    min_index = np.argmin(future_water_levels)
-    HighTidexy = [future_times[max_index], future_water_levels[max_index]]
-    LowTidexy = [future_times[min_index], future_water_levels[min_index]]
-    print(f'High tide index: {max_index}, Low tide index: {min_index}')
-    print(f'High tide time: {datetime.fromtimestamp(future_times[max_index], timezone.utc)}')
-    HighTidex, HighTidey = mapper_24hr.map_point(HighTidexy)
-    LowTidex, LowTidey = mapper_24hr.map_point(LowTidexy)
 
-    #draw vertical lines for high and low tide
-    draw.line((HighTidex, HighTidey, HighTidex, HighTidey + 50), fill='black')
-    draw.line((LowTidex, LowTidey, LowTidex, LowTidey - 50), fill='black')
     
-    font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=32)
-    # draw points and text for high tide
-    draw_point(draw, HighTidex, HighTidey, 4)
-    label_time = datetime.fromtimestamp(future_times[max_index], timezone.utc).strftime('%H:%M')
-    draw.text((HighTidex, LowTidey+5), label_time, fill='black', font=font, anchor='ms')
-    print(f"High tide time: {label_time} located at {HighTidex, HighTidey}")
+
+    # # Draw point and text for high tide within next 10 hours
+    # draw_point(draw, HighTidex_10hr, HighTidey_10hr, 6)
+    # label_time_10hr = datetime.fromtimestamp(future_10hr_times[max_10hr_index], timezone.utc).strftime('%H:%M')
+    # draw.text((HighTidex_10hr, HighTidey_10hr + 5), label_time_10hr, fill='blue', font=font, anchor='ms')
+    # print(f"High tide within next 10 hours time: {label_time_10hr} located at {HighTidex_10hr, HighTidey_10hr}")
+    # max_index = np.argmax(future_water_levels)
+    # min_index = np.argmin(future_water_levels)
+    # HighTidexy = [future_times[max_index], future_water_levels[max_index]]
+    # LowTidexy = [future_times[min_index], future_water_levels[min_index]]
+    # print(f'High tide index: {max_index}, Low tide index: {min_index}')
+    # print(f'High tide time: {datetime.fromtimestamp(future_times[max_index], timezone.utc)}')
+    # HighTidex, HighTidey = mapper_24hr.map_point(HighTidexy)
+    # LowTidex, LowTidey = mapper_24hr.map_point(LowTidexy)
+
+    # #draw vertical lines for high and low tide
+    # draw.line((HighTidex, HighTidey, HighTidex, HighTidey + 50), fill='white')
+    # draw.line((LowTidex, LowTidey, LowTidex, LowTidey - 50), fill='black')
     
-    # draw points and text for low tide
-    draw_point(draw, LowTidex, LowTidey, 4)
-    label_time = datetime.fromtimestamp(future_times[min_index], timezone.utc).strftime('%H:%M')
-    draw.text((LowTidex, HighTidey-5), label_time, fill='black', font=font, anchor='mt')
-    print(f'Low tide time: {datetime.fromtimestamp(future_times[min_index], timezone.utc)}')
+    # font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=44)
+    # # draw points and text for high tide
+    # draw_point(draw, HighTidex, HighTidey, 6)
+    # label_time = datetime.fromtimestamp(future_times[max_index], timezone.utc).strftime('%H:%M')
+    # draw.text((HighTidex, LowTidey+5), label_time, fill='white', font=font, anchor='ms')
+    # print(f"High tide time: {label_time} located at {HighTidex, HighTidey}")
+    
+    # # draw points and text for low tide
+    # draw_point(draw, LowTidex, LowTidey, 6)
+    # label_time = datetime.fromtimestamp(future_times[min_index], timezone.utc).strftime('%H:%M')
+    # draw.text((LowTidex, HighTidey-5), label_time, fill='black', font=font, anchor='mt')
+    # print(f'Low tide time: {datetime.fromtimestamp(future_times[min_index], timezone.utc)}')
 
     #################################################################################
     ####### full historical + predicted data plot #######
@@ -173,19 +241,23 @@ def create_tide_plot_image(df, filename):
     tide_full = water_levels[(timestamps >= time_span_full[0]) & (timestamps <= time_span_full[1])]
     x_normalized, y_normalized = mapper_full.map_vectors(timestamps, water_levels)
     points = list(zip(x_normalized, y_normalized))
-    draw.polygon([(0, 480)] + points + [(800, 480)], fill='black')
+    draw.polygon([(0, 480)] + points + [(800, 480)], fill='grey')
+
+    x_px_24r, y_px_24hr = mapper_full.map_vectors(timestamps24hr, tide_24hr)
+    points = list(zip(x_px_24r, y_px_24hr ))
+    draw.polygon([(x_px_24r.min(), 480)] + points + [(x_px_24r.max(), 480)], fill='white')
     
     # Mark the current time with a sphere
     ptx, pty = mapper_full.map_point(pt_now)
-    draw_point(draw, ptx, pty, 4)
+    draw_point(draw, ptx, pty, 6)
     window24hr_low = mapper_full.map_point([time_lower_limit_24hr, pty])
     window24hr_high = mapper_full.map_point([time_upper_limit_24hr, pty])
 
 
     # Mark boundaries of tide data
-    draw.line((0, px_for_full[2], 800, px_for_full[2]), fill='black')
+    draw.line((0, px_for_full[2], 800, px_for_full[2]), fill='grey')
     draw.line((0, 400, 800, 400), fill='black')
-    draw.line((0, px_for_full[3], 800, px_for_full[3]), fill='white')
+    draw.line((0, px_for_full[3], 800, px_for_full[3]), fill='black')
    
 
 
@@ -241,13 +313,14 @@ def create_weather_image(weather_data, img, draw, font):
 #################################################################################
 ####### Tide Data ##########
 # Get tide data from the ERDP open data website of the marine institute
-df_historical, df_predicted = get_TideData.fetch_and_format_tide_data()
+df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
 
 # merge the dataframes on time, starting from the end of the historical data only
 df_predicted_cut = df_predicted[df_predicted['time'] > df_historical['time'].max()]
 df_historical_cut = df_historical[df_historical['time'] < df_predicted_cut['time'].min()]
 df_merged = pd.concat([df_historical_cut, df_predicted_cut])
-img, draw, font = create_tide_plot_image(df_merged, 'tide_plot.png')
+df_merged = df_predicted
+img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
 
 
 
@@ -255,9 +328,9 @@ img, draw, font = create_tide_plot_image(df_merged, 'tide_plot.png')
 ####### Weather Data ##########
 time_now = datetime.now(timezone.utc)
 # Get weather data from the Met Eireann website
-weather_data = get_MetEireann.fetch_parse_data()
-print(weather_data)
-create_weather_image(weather_data, img, draw, font)
+# weather_data = get_MetEireann.fetch_parse_data()
+# print(weather_data)
+# create_weather_image(weather_data, img, draw, font)
 
 
 # Plot the tide data

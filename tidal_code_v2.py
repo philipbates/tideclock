@@ -74,13 +74,29 @@ def draw_point(draw, ptx, pty, radius):
 
 def draw_diamond(draw, center_x, center_y, size):
     half_size = size / 2
-    h_squash = 0.8
+    h_squash = 0.6
     points = [
         (center_x, center_y - half_size),  # Top
         (center_x + half_size*h_squash, center_y),  # Right
         (center_x, center_y + half_size),  # Bottom
         (center_x - half_size*h_squash, center_y)   # Left
     ]
+    b = 3
+    points_mid = [
+        (center_x, center_y - half_size-b),  # Top
+        (center_x + half_size*h_squash+b, center_y),  # Right
+        (center_x, center_y + half_size+b),  # Bottom
+        (center_x - half_size*h_squash-b, center_y)   # Left
+    ]
+    b = 5
+    points_out = [
+        (center_x, center_y - half_size-b),  # Top
+        (center_x + half_size*h_squash+b, center_y),  # Right
+        (center_x, center_y + half_size+b),  # Bottom
+        (center_x - half_size*h_squash-b, center_y)   # Left
+    ]
+    draw.polygon(points_out, fill='black', outline='grey', width=2)
+    draw.polygon(points_mid, fill='black', outline='black', width=1)
     draw.polygon(points, fill='white', outline='grey', width=3)
 
 def mark_tide_time(draw, mapper, df_highlow_tides):
@@ -97,15 +113,15 @@ def mark_tide_time(draw, mapper, df_highlow_tides):
         draw_point(draw, tide_x, tide_y, 6)
         # draw the line
         if tide_type == "HIGH":
-            draw.line((tide_x, tide_y, tide_x, tide_y + 50), fill='white')
+            draw.line((tide_x, tide_y, tide_x, 212), fill='white')
         elif tide_type == "LOW":
-            draw.line((tide_x, tide_y, tide_x, tide_y - 50), fill='black')
+            draw.line((tide_x, tide_y, tide_x, 88), fill='black')
         # add the label
         t_xoff = 4
         if tide_type == "HIGH":
-            draw.text((tide_x+t_xoff, tide_y + 58), label_time, fill='white', font=font, anchor='mt')
+            draw.text((tide_x+t_xoff, 220), label_time, fill='white', font=font, anchor='mt')
         elif tide_type == "LOW":
-            draw.text((tide_x-t_xoff, tide_y - 58), label_time, fill='black', font=font, anchor='ms')
+            draw.text((tide_x-t_xoff, 80), label_time, fill='black', font=font, anchor='ms')
         print(f"Tide time: {label_time} located at {tide_x, tide_y}")
 
 # Function to create and save tide plot image
@@ -178,7 +194,7 @@ def create_tide_plot_image(df, df_high_low, filename):
     # Mark the current time with a sphere
     ptx, pty = mapper_24hr.map_point(pt_now)
     # draw_point(draw, ptx, pty, radius=6)
-    draw_diamond(draw, ptx, pty, size=20)
+    draw_diamond(draw, ptx, pty, size=30)
 
     # Find the next four high and low tide entries after the current time
     current_time_dt = pd.to_datetime(time_lower_limit_24hr, unit='s', utc=True)
@@ -190,10 +206,15 @@ def create_tide_plot_image(df, df_high_low, filename):
         closest_index = np.abs(df['time'] - row['time']).argmin()
         closest_time = timestamps[closest_index]
         closest_water_level = water_levels[closest_index]
-        print(f"Closest time: {closest_time}, Closest water level: {closest_water_level}")
+        # print(f"Closest time: {closest_time}, Closest water level: {closest_water_level}")
         next_high_low_tides.at[index, 'closest_time'] = closest_time
         next_high_low_tides.at[index, 'closest_water_level'] = closest_water_level
 
+
+    # Add the update time in the top left corner
+    font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=12)
+    update_time = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+    draw.text((10, 10), f"updated: {update_time}", fill='black', font=font)
 
     mark_tide_time(draw, mapper_24hr, next_high_low_tides)
     # treat the high tide time
@@ -323,20 +344,20 @@ df_merged = df_predicted
 
 
 # write to screen using ScreenWriter.py
-from ScreenWriter import write_to_screen
+# from ScreenWriter import write_to_screen
 # every minute until the script is killed
 # start a clock at the current time
 script_start_time = datetime.now(timezone.utc).timestamp()
-while True:
-    img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
-    write_to_screen(img, 60)
-    elapsed_time = datetime.now(timezone.utc) - datetime.fromtimestamp(script_start_time, timezone.utc)
-    if elapsed_time > timedelta(hours=12):
-        df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
-        df_predicted_cut = df_predicted[df_predicted['time'] > df_historical['time'].max()]
-        df_historical_cut = df_historical[df_historical['time'] < df_predicted_cut['time'].min()]
-        df_merged = pd.concat([df_historical_cut, df_predicted_cut])
-        df_merged = df_predicted
+
+img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
+# write_to_screen(img, 60)
+elapsed_time = datetime.now(timezone.utc) - datetime.fromtimestamp(script_start_time, timezone.utc)
+if elapsed_time > timedelta(hours=12):
+    df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
+    df_predicted_cut = df_predicted[df_predicted['time'] > df_historical['time'].max()]
+    df_historical_cut = df_historical[df_historical['time'] < df_predicted_cut['time'].min()]
+    df_merged = pd.concat([df_historical_cut, df_predicted_cut])
+    df_merged = df_predicted
 
 
 

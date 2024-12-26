@@ -126,6 +126,8 @@ def create_tide_plot_image(df, df_high_low, filename):
     #establish time windows
     timestamps = np.array(df['time'].astype(np.int64) // 10**9)
     current_time = datetime.now(timezone.utc).timestamp()
+    ireland_tz = pytz.timezone("Europe/Dublin")
+    current_time = datetime.now(ireland_tz).timestamp()
     closest_index = np.abs(timestamps - current_time).argmin()
     print(f"current_time: {current_time}")
     print(f"closest_index: {closest_index}")

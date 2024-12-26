@@ -1,10 +1,15 @@
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
+# import ssl
+# import urllib.request
+# import json
 from datetime import datetime, timedelta, timezone
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import pytz
+# from .MetEireann import create_weather_image
+import get_MetEireann
 import get_TideData
 
 
@@ -55,6 +60,10 @@ class DataToPlotAreaMapper:
 #         local_tz = pytz.timezone("Europe/London")
 #         return utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
 
+
+# Function to plot tide data
+def plot_tide_data(df, label, color):
+    plt.plot(df['time'], df['tide_level'], label=label, color=color)
 
 def draw_point(draw, ptx, pty, radius):
     ptradius = max(1, radius +1)
@@ -203,10 +212,49 @@ def create_tide_plot_image(df, df_high_low, filename):
         next_high_low_tides.at[index, 'closest_water_level'] = closest_water_level
 
 
-
+    # Add the update time in the top left corner
+    font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=12)
+    update_time = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+    draw.text((10, 10), f"updated: {update_time}", fill='black', font=font)
 
     mark_tide_time(draw, mapper_24hr, next_high_low_tides)
     # treat the high tide time
+
+
+    
+
+    
+
+    # # Draw point and text for high tide within next 10 hours
+    # draw_point(draw, HighTidex_10hr, HighTidey_10hr, 6)
+    # label_time_10hr = datetime.fromtimestamp(future_10hr_times[max_10hr_index], timezone.utc).strftime('%H:%M')
+    # draw.text((HighTidex_10hr, HighTidey_10hr + 5), label_time_10hr, fill='blue', font=font, anchor='ms')
+    # print(f"High tide within next 10 hours time: {label_time_10hr} located at {HighTidex_10hr, HighTidey_10hr}")
+    # max_index = np.argmax(future_water_levels)
+    # min_index = np.argmin(future_water_levels)
+    # HighTidexy = [future_times[max_index], future_water_levels[max_index]]
+    # LowTidexy = [future_times[min_index], future_water_levels[min_index]]
+    # print(f'High tide index: {max_index}, Low tide index: {min_index}')
+    # print(f'High tide time: {datetime.fromtimestamp(future_times[max_index], timezone.utc)}')
+    # HighTidex, HighTidey = mapper_24hr.map_point(HighTidexy)
+    # LowTidex, LowTidey = mapper_24hr.map_point(LowTidexy)
+
+    # #draw vertical lines for high and low tide
+    # draw.line((HighTidex, HighTidey, HighTidex, HighTidey + 50), fill='white')
+    # draw.line((LowTidex, LowTidey, LowTidex, LowTidey - 50), fill='black')
+    
+    # font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=44)
+    # # draw points and text for high tide
+    # draw_point(draw, HighTidex, HighTidey, 6)
+    # label_time = datetime.fromtimestamp(future_times[max_index], timezone.utc).strftime('%H:%M')
+    # draw.text((HighTidex, LowTidey+5), label_time, fill='white', font=font, anchor='ms')
+    # print(f"High tide time: {label_time} located at {HighTidex, HighTidey}")
+    
+    # # draw points and text for low tide
+    # draw_point(draw, LowTidex, LowTidey, 6)
+    # label_time = datetime.fromtimestamp(future_times[min_index], timezone.utc).strftime('%H:%M')
+    # draw.text((LowTidex, HighTidey-5), label_time, fill='black', font=font, anchor='mt')
+    # print(f'Low tide time: {datetime.fromtimestamp(future_times[min_index], timezone.utc)}')
 
     #################################################################################
     ####### full historical + predicted data plot #######
@@ -232,38 +280,113 @@ def create_tide_plot_image(df, df_high_low, filename):
     draw.line((0, px_for_full[2], 800, px_for_full[2]), fill='grey')
     draw.line((0, 400, 800, 400), fill='black')
     draw.line((0, px_for_full[3], 800, px_for_full[3]), fill='black')
-    
-    # Add the update time in the top left corner
-    font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=12)
-    update_time = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
-    draw.text((10, 10), f"updated: {update_time}", fill='black', font=font)   
-    # save the image
+   
+
+
+    # font = ImageFont.load_default()
+    # time_labels = [x_min, x_min + 0.25 * (x_max - x_min), x_min + 0.75 * (x_max - x_min), x_max]
+    # for i, label in enumerate(time_labels):
+    #     label_time = datetime.utcfromtimestamp(label).strftime('%Y-%m-%d %H:%M:%S')
+    #     draw.text((i * 200, 400), label_time, fill='black', font=font)
     img.save(filename)
-    #########################################################
-    #########################################################
-    #########################################################
-    #img.show()
-    #########################################################
-    #########################################################
-    #########################################################
+    # img.show()
     return img, draw, font
+
+def create_weather_image(weather_data, img, draw, font):
+    #establish time windows
+    current_time = datetime.now(timezone.utc).timestamp()
+
+    # create an array of times using the date from current time and each hour like 00:00, 01:00, 02:00 etc etc
+    # Get today's date at 00:00 in UTC
+    today_midnight = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
+    # Create an array of times for each hour of the current day
+    timestamps_24hr = np.array([today_midnight + i * 3600 for i in range(25)])
+    px_for_weather = (0, 800, 0, 80)
+    mapper_weather = DataToPlotAreaMapper([today_midnight, today_midnight + 24 * 3600],
+                                          [0,1], px_for_weather, img.size)
+    for hour in timestamps_24hr:
+        # convert the hour to the correct format to match the weather data key
+        hour_key = datetime.fromtimestamp(hour, timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+        # get the symbol for this hour from the weather data
+        symbol = weather_data.get(hour_key, {}).get('symbol', 'xf075')
+        # convert the symbol to unicode
+        unicode = get_MetEireann.get_unicode_value(symbol)
+
+        print(f'Hour: {hour}, Symbol: {symbol}, Unicode: {unicode}')
+        hourxy = (hour, 0.5)
+        hr_x, hr_y = mapper_weather.map_point(hourxy)
+        # draw vertical lines between each hour of the weather data
+        font = ImageFont.truetype(r"weather-icons-master\font\weathericons-regular-webfont.ttf", size=32)
+        # draw points and text for high tide
+        draw.text((hr_x, hr_y), unicode, fill='black', font=font, anchor='ms')
+        # draw.text((200, 100), "test", fill='black', font=font, anchor='ms')
+
+
+    
+    # Draw the weather data
+
+    # Save and display the image
+    img.save('weather_plot.png')
+    img.show()
+
 
 
 
 # Main function
 #################################################################################
-############ current time ##########
-# set the right timezone
+# get the current time
+# Define the timezone for Ireland
 ireland_tz = pytz.timezone("Europe/Dublin")
 
 ####### Tide Data ##########
 # Get tide data from the ERDP open data website of the marine institute
 df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
+
+# merge the dataframes on time, starting from the end of the historical data only
+df_predicted_cut = df_predicted[df_predicted['time'] > df_historical['time'].max()]
+df_historical_cut = df_historical[df_historical['time'] < df_predicted_cut['time'].min()]
+df_merged = pd.concat([df_historical_cut, df_predicted_cut])
 df_merged = df_predicted
 
 
 # write to screen using ScreenWriter.py
-# from ScreenWriter import write_to_screen
+from ScreenWriter import write_to_screen
+# every minute until the script is killed
+# start a clock at the current time
+script_start_time = datetime.now(timezone.utc).timestamp()
+
 img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
-# write_to_screen(img, 60)
+write_to_screen(img, 60)
+elapsed_time = datetime.now(timezone.utc) - datetime.fromtimestamp(script_start_time, timezone.utc)
+if elapsed_time > timedelta(hours=12):
+    df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
+    df_predicted_cut = df_predicted[df_predicted['time'] > df_historical['time'].max()]
+    df_historical_cut = df_historical[df_historical['time'] < df_predicted_cut['time'].min()]
+    df_merged = pd.concat([df_historical_cut, df_predicted_cut])
+    df_merged = df_predicted
+
+
+
+#################################################################################
+####### Weather Data ##########
+# time_now = datetime.now(timezone.utc)
+# Get weather data from the Met Eireann website
+# weather_data = get_MetEireann.fetch_parse_data()
+# print(weather_data)
+# create_weather_image(weather_data, img, draw, font)
+
+
+# # Plot the tide data
+# plt.figure(figsize=(12, 6))
+# plot_tide_data(df_historical, 'Historical Tide Level (LAT)', 'blue')
+# plot_tide_data(df_predicted, 'Predicted Tide Level (LAT)', 'red')
+# plot_tide_data(df_merged, 'Merged Tide Level (LAT)', 'green')
+# plt.xlabel('Time')
+# plt.ylabel('Tide Level (m relative to LAT)')
+# plt.title('Tide Level Over Time (Sligo Station)')
+# plt.grid(True)
+# plt.legend()
+# plt.tight_layout()
+# plt.show()
+
 

@@ -344,13 +344,13 @@ df_merged = df_predicted
 
 
 # write to screen using ScreenWriter.py
-# from ScreenWriter import write_to_screen
+from ScreenWriter import write_to_screen
 # every minute until the script is killed
 # start a clock at the current time
 script_start_time = datetime.now(timezone.utc).timestamp()
 
 img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
-# write_to_screen(img, 60)
+write_to_screen(img, 60)
 elapsed_time = datetime.now(timezone.utc) - datetime.fromtimestamp(script_start_time, timezone.utc)
 if elapsed_time > timedelta(hours=12):
     df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()

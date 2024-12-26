@@ -288,7 +288,7 @@ def create_tide_plot_image(df, df_high_low, filename):
     #     label_time = datetime.utcfromtimestamp(label).strftime('%Y-%m-%d %H:%M:%S')
     #     draw.text((i * 200, 400), label_time, fill='black', font=font)
     img.save(filename)
-    img.show()
+    # img.show()
     return img, draw, font
 
 def create_weather_image(weather_data, img, draw, font):

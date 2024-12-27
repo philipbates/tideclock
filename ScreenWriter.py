@@ -74,7 +74,7 @@ if __name__ == "__main__":
     print('Running main function.')
     try:
         # Example usage of write_to_screen function
-        write_to_screen('example_image.png', 10)
+        write_to_screen(None)
     except Exception as e:
         display_error('main')
 

@@ -44,10 +44,10 @@ def write_to_screen(image, sleep_seconds):
     print('Screen output file displayed.') # for debugging
     # Sleep
     epd.sleep() # Put screen to sleep to prevent damage
-    print('Sleeping for ' + str(sleep_seconds) +'.')
-    time.sleep(sleep_seconds) # Determines refresh rate on data
-    epd.init() # Re-Initialize screen
-    print('Screen re-initialized.') # for debugging
+    # print('Sleeping for ' + str(sleep_seconds) +'.')
+    # time.sleep(sleep_seconds) # Determines refresh rate on data
+    # epd.init() # Re-Initialize screen
+    # print('Screen re-initialized.') # for debugging
 
 
 # define function for displaying error

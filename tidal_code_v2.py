@@ -129,8 +129,8 @@ def create_tide_plot_image(df, df_high_low, filename):
     ireland_tz = pytz.timezone("Europe/Dublin")
     current_time = datetime.now(ireland_tz).timestamp()
     closest_index = np.abs(timestamps - current_time).argmin()
-    print(f"current_time: {current_time}")
-    print(f"closest_index: {closest_index}")
+    # print(f"current_time: {current_time}")
+    # print(f"closest_index: {closest_index}")
 
 
 
@@ -193,7 +193,7 @@ def create_tide_plot_image(df, df_high_low, filename):
     # Find the next four high and low tide entries after the current time
     current_time_dt = pd.to_datetime(time_lower_limit_24hr, unit='s', utc=True)
     next_high_low_tides = df_high_low[df_high_low['time'] > current_time_dt].head(4)
-    print(next_high_low_tides)
+    # print(next_high_low_tides)
 
 
     for index, row in next_high_low_tides.iterrows():
@@ -257,12 +257,13 @@ def create_tide_plot_image(df, df_high_low, filename):
 ############ current time ##########
 # set the right timezone
 ireland_tz = pytz.timezone("Europe/Dublin")
+print(f'Code started at time: {datetime.now(ireland_tz)}, requesting tide data.')
 
 ####### Tide Data ##########
 # Get tide data from the ERDP open data website of the marine institute
 df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
 df_merged = df_predicted
-
+print('tide data recieved.')
 # make the image
 img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
 

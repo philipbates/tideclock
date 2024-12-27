@@ -59,6 +59,7 @@ def display_error():
     h_image = Image.new('1', (epd.width, epd.height), 255)   
     picfile = r"wave.png"
     image = Image.open(picfile)
+    image = image.convert('1')
     print('Screen output file opened.') # for debugging
     # Initialize the drawing context with template as background
     #ensure the image is the same size as the screen

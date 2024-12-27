@@ -263,9 +263,14 @@ ireland_tz = pytz.timezone("Europe/Dublin")
 df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
 df_merged = df_predicted
 
+# make the image
+img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
+
 
 # write to screen using ScreenWriter.py
-# from ScreenWriter import write_to_screen
-img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
-# write_to_screen(img, 60)
+try:
+    from ScreenWriter import write_to_screen
+    write_to_screen(img, 60)
+except:
+    pass
 

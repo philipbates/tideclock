@@ -267,11 +267,11 @@ print('tide data recieved.')
 # make the image
 img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
 
-
+from ScreenWriter import write_to_screen
+print("ScreenWriter imported")
+    
 # write to screen using ScreenWriter.py
 try:
-    from ScreenWriter import write_to_screen
-    print("ScreenWriter imported")
     write_to_screen(img)
     print("image written to screen")
 except:

@@ -272,6 +272,9 @@ img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png'
 try:
     from ScreenWriter import write_to_screen
     write_to_screen(img, 60)
+    print("image written to screen")
 except:
+    print("image not written to screen")
     pass
+print('Code finished at time: ', datetime.now(ireland_tz))
 

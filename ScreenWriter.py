@@ -29,16 +29,17 @@ print('Screen cleared.')
 
 
 # define funciton for writing image and sleeping for specified time
-def write_to_screen(image, sleep_seconds):
+def write_to_screen(image):
     print('Writing to screen.') # for debugging
     # Create new blank image template matching screen resolution
     h_image = Image.new('1', (epd.width, epd.height), 255)
     # Open the template
-    picfile = r"tide_plot.png"
-    screen_output_file = Image.open(picfile)
+    if image is None:   
+        picfile = r"wave.png"
+        image = Image.open(picfile)
     print('Screen output file opened.') # for debugging
     # Initialize the drawing context with template as background
-    h_image.paste(screen_output_file, (0, 0))
+    h_image.paste(image, (0, 0))
     print('Screen output file pasted.') # for debugging
     epd.display(epd.getbuffer(h_image))
     print('Screen output file displayed.') # for debugging

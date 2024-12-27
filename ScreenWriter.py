@@ -34,7 +34,7 @@ def write_to_screen(image):
     # Create new blank image template matching screen resolution
     h_image = Image.new('1', (epd.width, epd.height), 255)
     # Open the template  
-    picfile = r"tide_plot.png"
+    picfile = "tide_plot.png"
     image = Image.open(picfile)
     print('Screen output file opened.') # for debugging
     # Initialize the drawing context with template as background

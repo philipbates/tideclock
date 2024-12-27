@@ -39,6 +39,8 @@ def write_to_screen(image):
         image = Image.open(picfile)
     print('Screen output file opened.') # for debugging
     # Initialize the drawing context with template as background
+    #ensure the image is the same size as the screen
+    image = image.resize((epd.width, epd.height))
     h_image.paste(image, (0, 0))
     print('Screen output file pasted.') # for debugging
     epd.display(epd.getbuffer(h_image))

@@ -6,6 +6,8 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import pytz
 import get_TideData
+import os
+import pickle
 
 
 
@@ -92,14 +94,23 @@ def draw_diamond(draw, center_x, center_y, size):
     draw.polygon(points, fill='white', outline='grey', width=3)
 
 def mark_tide_time(draw, mapper, df_highlow_tides):
-    # Draw a point at the time
-    # Draw a line down from the high tide time, colored black
-    # place text at the bottom of the line
+    # df_highlow_tides is a DataFrame containing the next high and low tides.
+    # It typically has columns:
+    #   - 'time': Timestamp of the tide event (datetime64)
+    #   - 'tide_time_category': Either "HIGH" or "LOW"
+    #   - 'closest_time': Closest timestamp in the main data (float, seconds since epoch)
+    #   - 'closest_water_level': Water level at closest_time (float)
+    # Additional columns may exist depending on upstream code.
     font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=44)
 
     for index, row in df_highlow_tides.iterrows():
-        label_time = datetime.fromtimestamp(row['closest_time'], timezone.utc).strftime('%H:%M')
-        tide_xy = [row['closest_time'], row['closest_water_level']]
+        print(f'row time value is {row["time"]}')
+        # Convert row["time"] from pd.Timestamp to a numpy timestamp
+        #label_time = datetime.fromtimestamp(row['time'], pytz.timezone("Europe/Dublin")).strftime('%H:%M')
+        label_time = row['time'].astimezone(pytz.timezone("Europe/Dublin")).strftime('%H:%M')
+        print(f'label time is {label_time}, datatype {type(label_time)}')
+        timestamp = row['time'].value // 10**9
+        tide_xy = [timestamp, row['Water_Level_ODM']]
         tide_x, tide_y = mapper.map_point(tide_xy)
         tide_type = row['tide_time_category']
         draw_point(draw, tide_x, tide_y, 6)
@@ -116,6 +127,27 @@ def mark_tide_time(draw, mapper, df_highlow_tides):
             draw.text((tide_x-t_xoff, 80), label_time, fill='black', font=font, anchor='ms')
         print(f"Tide time: {label_time} located at {tide_x, tide_y}")
 
+
+def get_next_high_low_tides(df, df_high_low, time_lower_limit_24hr, timestamps, water_levels, num_tides=4):
+    """
+    Find the next high and low tide entries after the current time and annotate with closest time and water level.
+    Returns a DataFrame of the next tides.
+    """
+    current_time_dt = pd.to_datetime(time_lower_limit_24hr, unit='s', utc=True)
+    # extract only the next 4 tides
+    next_high_low_tides = df_high_low[df_high_low['time'] > current_time_dt].head(num_tides).copy()
+
+    for index, row in next_high_low_tides.iterrows():
+        # the high tide time is probably not on a tide prediction timestamp. Here we match them.
+        closest_index = np.abs(df['time'] - row['time']).argmin()
+        closest_time = timestamps[closest_index]
+        closest_water_level = water_levels[closest_index]
+        # next_high_low_tides.at[index, 'time'] = closest_time
+        # replace the high tide value with a value from the tide_prediction data
+        next_high_low_tides.at[index, 'Water_Level_ODM'] = closest_water_level
+
+    return next_high_low_tides
+
 # Function to create and save tide plot image
 def create_tide_plot_image(df, df_high_low, filename):
     
@@ -124,8 +156,9 @@ def create_tide_plot_image(df, df_high_low, filename):
     draw = ImageDraw.Draw(img)
     
     #establish time windows
-    timestamps = np.array(df['time'].astype(np.int64) // 10**9)
-    current_time = datetime.now(timezone.utc).timestamp()
+    timestamps = get_TideData.convert_timestamp_to_numpy(df['time'])
+
+
     ireland_tz = pytz.timezone("Europe/Dublin")
     current_time = datetime.now(ireland_tz).timestamp()
     closest_index = np.abs(timestamps - current_time).argmin()
@@ -135,7 +168,7 @@ def create_tide_plot_image(df, df_high_low, filename):
 
 
     # create a 24hr window around the current time
-    time_lower_limit_24hr = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
+    time_lower_limit_24hr = datetime.now(ireland_tz).replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
     time_upper_limit_24hr = time_lower_limit_24hr + 24 * 60 * 60
     time_lower_limit_full = timestamps.min()
     time_upper_limit_full = timestamps.max()
@@ -169,8 +202,6 @@ def create_tide_plot_image(df, df_high_low, filename):
     tide_24hr = water_levels[(timestamps >= time_span_24hr[0]) & (timestamps <= time_span_24hr[1])]
     past_times = timestamps[(timestamps >= time_span_24hr[0]) & (timestamps <= current_time)]
     past_water_levels = water_levels[(timestamps >= time_span_24hr[0]) & (timestamps <= current_time)]
-    future_times = timestamps[(timestamps > current_time) & (timestamps <= time_span_24hr[1])]
-    future_water_levels = water_levels[(timestamps > current_time) & (timestamps <= time_span_24hr[1])]
 
     #draw the shaded data plot
     x_px_24r, y_px_24hr = mapper_24hr.map_vectors(timestamps24hr, tide_24hr)
@@ -182,39 +213,28 @@ def create_tide_plot_image(df, df_high_low, filename):
     points = list(zip(x_normalized, y_normalized))
     draw.line(points, fill='grey', width=2)
 
+    # Mark the current time with a sphere
+    ptx, pty = mapper_24hr.map_point(pt_now)
+    draw_diamond(draw, ptx, pty, size=30)
 
     ######################################################################################
     ####### current,  high and low tide times marked #######
-    # Mark the current time with a sphere
-    ptx, pty = mapper_24hr.map_point(pt_now)
-    # draw_point(draw, ptx, pty, radius=6)
-    draw_diamond(draw, ptx, pty, size=30)
-
-    # Find the next four high and low tide entries after the current time
-    current_time_dt = pd.to_datetime(time_lower_limit_24hr, unit='s', utc=True)
-    next_high_low_tides = df_high_low[df_high_low['time'] > current_time_dt].head(4)
-    # print(next_high_low_tides)
+    # next_high_low_tides = extract_high_low_tide_data(timestamps24hr, tide_24hr)
+    ######################################################################################
+    # the tide times are slightly off, as they are from sligo - the tide prediction is indeed for streedagh.
 
 
-    for index, row in next_high_low_tides.iterrows():
-        closest_index = np.abs(df['time'] - row['time']).argmin()
-        closest_time = timestamps[closest_index]
-        closest_water_level = water_levels[closest_index]
-        # print(f"Closest time: {closest_time}, Closest water level: {closest_water_level}")
-        next_high_low_tides.at[index, 'closest_time'] = closest_time
-        next_high_low_tides.at[index, 'closest_water_level'] = closest_water_level
-
-
-
+    next_high_low_tides = get_next_high_low_tides(df, df_high_low, time_lower_limit_24hr, timestamps, water_levels)
+    print('------------------ high/low tides head -----------------')
+    print(next_high_low_tides.head())
+    print(next_high_low_tides.dtypes)
 
     mark_tide_time(draw, mapper_24hr, next_high_low_tides)
-    # treat the high tide time
+
 
     #################################################################################
     ####### full historical + predicted data plot #######
     #################################################################################
-    timestamps_full = timestamps[(timestamps >= time_span_full[0]) & (timestamps <= time_span_full[1])]
-    tide_full = water_levels[(timestamps >= time_span_full[0]) & (timestamps <= time_span_full[1])]
     x_normalized, y_normalized = mapper_full.map_vectors(timestamps, water_levels)
     points = list(zip(x_normalized, y_normalized))
     draw.polygon([(0, 480)] + points + [(800, 480)], fill='grey')
@@ -226,8 +246,6 @@ def create_tide_plot_image(df, df_high_low, filename):
     # Mark the current time with a sphere
     ptx, pty = mapper_full.map_point(pt_now)
     draw_point(draw, ptx, pty, 6)
-    window24hr_low = mapper_full.map_point([time_lower_limit_24hr, pty])
-    window24hr_high = mapper_full.map_point([time_upper_limit_24hr, pty])
 
 
     # Mark boundaries of tide data
@@ -261,13 +279,61 @@ print(f'Code started at time: {datetime.now(ireland_tz)}, requesting tide data.'
 
 ####### Tide Data ##########
 # Get tide data from the ERDP open data website of the marine institute
-df_historical, df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
-df_merged = df_predicted
+data_store_path = "tide_data_store.pkl"
+
+def is_data_stale(store_path, max_age_hours=24):
+    if not os.path.exists(store_path):
+        return True
+    try:
+        with open(store_path, "rb") as f:
+            data = pickle.load(f)
+            last_updated = data.get("last_updated")
+            if last_updated is None:
+                return True
+            last_updated_dt = datetime.fromisoformat(last_updated)
+            if datetime.now() - last_updated_dt > timedelta(hours=max_age_hours):
+                return True
+            return False
+    except Exception:
+        return True
+
+if is_data_stale(data_store_path):
+    print('tide data requested from API.')
+    df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
+    print("Tide data fetched from API.")
+    with open(data_store_path, "wb") as f:
+        pickle.dump({
+            "last_updated": datetime.now().isoformat(),
+            "df_predicted": df_predicted,
+            "df_high_low": df_high_low
+        }, f)
+else:
+    with open(data_store_path, "rb") as f:
+        print("Tide data loaded from cache.")
+        data = pickle.load(f)
+        df_predicted = data["df_predicted"]
+        df_high_low = data["df_high_low"]
+
 print('tide data recieved.')
 # make the image
-img, draw, font = create_tide_plot_image(df_merged, df_high_low, 'tide_plot.png')
+# print the head of each of the input dataframes
+print('------------------ predicted tides head -----------------')
+print(df_predicted.head())
+#print datatypes for columns
+print(df_predicted.dtypes)
+
+print('------------------ high/low tides head -----------------')
+print(df_high_low.head())
+print(df_high_low.dtypes)
+
+
+img, draw, font = create_tide_plot_image(df_predicted, df_high_low, 'tide_plot.png')
 
 from ScreenWriter import write_to_screen
+import os
+import pickle
+from datetime import datetime, timedelta
+
 print("ScreenWriter imported")
     
 # write to screen using ScreenWriter.py

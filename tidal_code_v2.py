@@ -255,7 +255,9 @@ def create_tide_plot_image(df, df_high_low, filename):
     
     # Add the update time in the top left corner
     font = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=12)
-    update_time = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+    ireland_tz = pytz.timezone("Europe/Dublin")
+    current_time = datetime.now(ireland_tz).timestamp()
+    update_time = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')
     draw.text((10, 10), f"updated: {update_time}", fill='black', font=font)   
     # save the image
     img.save(filename)
@@ -333,15 +335,28 @@ from ScreenWriter import write_to_screen
 import os
 import pickle
 from datetime import datetime, timedelta
+from ScreenWriter import partial_refresh
 
 print("ScreenWriter imported")
-    
+
 # write to screen using ScreenWriter.py
+# Use partial_refresh() most of the time, and write_to_screen() every 10 times
+if not hasattr(write_to_screen, "counter"):
+    write_to_screen.counter = 0
+
 try:
-    write_to_screen(img)
-    print("image written to screen")
-except:
-    print("image not written to screen")
+    if write_to_screen.counter % 10 == 0:
+        write_to_screen(img)
+        print("image written to screen (full refresh)")
+    else:
+        partial_refresh(img)
+        print("image written to screen (partial refresh)")
+    write_to_screen.counter += 1
+except Exception as e:
+    print("image not written to screen:", e)
     pass
+
 print('Code finished at time: ', datetime.now(ireland_tz))
+
+
 

@@ -35,4 +35,21 @@ sudo systemctl enable tideclock.timer
 '''
 
 
+2025: ssh connection issue after code update.
+Cannot access filesystem (as it is linux) with windows, mac
+
+visually it is possible to see the pi flickering as if it is trying to update, so it seems to be running
+
+Tried multiple times, eventually solved via moving both pi and laptop to the study, re-starting there, and everything worked. 
+
+git stash
+git fetch 
+git merge
+
+
+If you want to test the file you need to activate the venv
+source /home/tony/tidal/bin/activate
+python tidal_code_v2.py
+
+
 

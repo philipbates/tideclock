@@ -359,7 +359,7 @@ print("ScreenWriter imported")
 # Use partial_refresh() most of the time, and write_to_screen() every 10 times
 epd = init_screen()
 picfile = 'tide_plot.png'
-print('script run counter, full refresh every 4')
+print(f'script run counter = {run_count}, full refresh every 4')
 if run_count == 1:
     write_to_screen(picfile, epd)
 try:

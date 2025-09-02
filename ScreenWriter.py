@@ -86,7 +86,7 @@ def partial_refresh(picfile, epd):
     image = image.resize((epd.width, epd.height))
     h_image = Image.new('1', (epd.width, epd.height), 255)
     h_image.paste(image, (0, 0))
-    epd.displayPartial(epd.getbuffer(h_image))
+    epd.display_Partial(epd.getbuffer(h_image))
     print('Partial refresh complete.')  # for debugging
 
 if __name__ == "__main__":

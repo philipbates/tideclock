@@ -359,32 +359,22 @@ print("ScreenWriter imported")
 # Use partial_refresh() most of the time, and write_to_screen() every 10 times
 epd = init_screen()
 picfile = 'tide_plot.png'
-
+print('script run counter, full refresh every 4')
 if run_count == 1:
     write_to_screen(picfile, epd)
 try:
-    if run_count % 10 == 0:
+    if run_count % 4 == 0:
         write_to_screen(picfile, epd)
         print("image written to screen (full refresh)")
     else:
         partial_refresh(picfile, epd)
         print("image written to screen (partial refresh)")
-    run_count += 1
+
 except Exception as e:
     print("image not written to screen:", e)
-    run_count += 1
+
     pass
-with open(data_store_path, "rb") as f:
-    data = pickle.load(f)
-    df_predicted = data["df_predicted"]
-    df_high_low = data["df_high_low"]
-with open(data_store_path, "wb") as f:
-    pickle.dump({
-        "last_updated": data.get("last_updated"),
-        "df_predicted": df_predicted,
-        "df_high_low": df_high_low,
-        "run_count": run_count
-    }, f)
+
 print('Code finished at time: ', datetime.now(ireland_tz))
 
 

@@ -17,24 +17,29 @@ from lib.waveshare_epd import epd4in26
 
 
 
-# Initialize and clear screen
-print('Initializing and clearing screen.')
-epd = epd4in26.EPD() # Create object for display functions
-epd.init()
-print('Screen initialized.')
-epd.Clear()
-print('Screen cleared.')
+# # Initialize and clear screen
+# print('Initializing and clearing screen.')
+# epd = epd4in26.EPD() # Create object for display functions
+# epd.init()
+# print('Screen initialized.')
+# epd.Clear()
+# print('Screen cleared.')
 
 
+def init_screen():
+    print('Initializing and clearing screen.')
+    epd = epd4in26.EPD() # Create object for display functions
+    epd.init()
+    print('Screen initialized.')
+    return epd
 
 
 # define funciton for writing image and sleeping for specified time
-def write_to_screen(image):
+def write_to_screen(picfile, epd):
     print('Writing to screen.') # for debugging
     # Create new blank image template matching screen resolution
     h_image = Image.new('1', (epd.width, epd.height), 255)
     # Open the template  
-    picfile = "tide_plot.png"
     image = Image.open(picfile)
     print('Screen output file opened.') # for debugging
     # Initialize the drawing context with template as background
@@ -53,7 +58,7 @@ def write_to_screen(image):
 
 
 # define function for displaying error
-def display_error():
+def display_error(picfile, epd):
     print('Writing to screen.') # for debugging
     # Create new blank image template matching screen resolution
     h_image = Image.new('1', (epd.width, epd.height), 255)   
@@ -75,7 +80,14 @@ def display_error():
     # epd.init() # Re-Initialize screen
     # print('Screen re-initialized.') # for debugging
 
-
+def partial_refresh(picfile, epd):
+    print('Performing partial refresh.')  # for debugging
+    image = Image.open(picfile)
+    image = image.resize((epd.width, epd.height))
+    h_image = Image.new('1', (epd.width, epd.height), 255)
+    h_image.paste(image, (0, 0))
+    epd.displayPartial(epd.getbuffer(h_image))
+    print('Partial refresh complete.')  # for debugging
 
 if __name__ == "__main__":
     print('Running main function.')

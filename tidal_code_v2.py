@@ -298,16 +298,20 @@ def is_data_stale(store_path, max_age_hours=24):
             return False
     except Exception:
         return True
+# Counter logic: store and update run count in the pickle file
+run_count = 1  # Default to 1 if new or stale
 
 if is_data_stale(data_store_path):
-    print('tide data requested from API.')
+    run_count = 1 
+    print('counter reset, tide data requested from API.')
     df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
     print("Tide data fetched from API.")
     with open(data_store_path, "wb") as f:
         pickle.dump({
             "last_updated": datetime.now().isoformat(),
             "df_predicted": df_predicted,
-            "df_high_low": df_high_low
+            "df_high_low": df_high_low,
+            "run_count": run_count  # Reset counter to 1
         }, f)
 else:
     with open(data_store_path, "rb") as f:
@@ -315,6 +319,17 @@ else:
         data = pickle.load(f)
         df_predicted = data["df_predicted"]
         df_high_low = data["df_high_low"]
+        run_count = data.get("run_count", 0) + 1  # Increment counter
+    # Update the counter in the pickle file
+    with open(data_store_path, "wb") as f:
+        pickle.dump({
+            "last_updated": data.get("last_updated"),
+            "df_predicted": df_predicted,
+            "df_high_low": df_high_low,
+            "run_count": run_count
+        }, f)
+
+print(f"Script run count: {run_count}")
 
 print('tide data recieved.')
 # make the image
@@ -336,20 +351,22 @@ import os
 import pickle
 from datetime import datetime, timedelta
 from ScreenWriter import partial_refresh
+from ScreenWriter import init_screen
 
 print("ScreenWriter imported")
 
 # write to screen using ScreenWriter.py
 # Use partial_refresh() most of the time, and write_to_screen() every 10 times
-if not hasattr(write_to_screen, "counter"):
-    write_to_screen.counter = 0
-
+epd = init_screen()
+picfile = 'tide_plot.png'
+if run_count == 1:
+    write_to_screen(picfile, epd)
 try:
     if write_to_screen.counter % 10 == 0:
-        write_to_screen(img)
+        write_to_screen(picfile, epd)
         print("image written to screen (full refresh)")
     else:
-        partial_refresh(img)
+        partial_refresh(picfile, epd)
         print("image written to screen (partial refresh)")
     write_to_screen.counter += 1
 except Exception as e:

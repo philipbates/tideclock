@@ -300,19 +300,28 @@ def is_data_stale(store_path, max_age_hours=24):
         return True
 # Counter logic: store and update run count in the pickle file
 run_count = 1  # Default to 1 if new or stale
+tide_data_ok = True
 
 if is_data_stale(data_store_path):
     run_count = 1 
     print('counter reset, tide data requested from API.')
-    df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
-    print("Tide data fetched from API.")
-    with open(data_store_path, "wb") as f:
-        pickle.dump({
-            "last_updated": datetime.now().isoformat(),
-            "df_predicted": df_predicted,
-            "df_high_low": df_high_low,
-            "run_count": run_count  # Reset counter to 1
-        }, f)
+    try:
+        df_predicted, df_high_low = get_TideData.fetch_and_format_tide_data()
+        print("Tide data fetched from API.")
+    except Exception as e:
+        tide_data_ok = False
+        print("Tide data fetch failed:", e)
+        from ScreenWriter import init_screen, display_error
+        epd = init_screen()
+        display_error('wave.png', epd)
+    if tide_data_ok:
+        with open(data_store_path, "wb") as f:
+            pickle.dump({
+                "last_updated": datetime.now().isoformat(),
+                "df_predicted": df_predicted,
+                "df_high_low": df_high_low,
+                "run_count": run_count  # Reset counter to 1
+            }, f)
 else:
     with open(data_store_path, "rb") as f:
         print("Tide data loaded from cache.")
@@ -329,51 +338,54 @@ else:
             "run_count": run_count
         }, f)
 
-print(f"Script run count: {run_count}")
+if tide_data_ok:
+    print(f"Script run count: {run_count}")
 
-print('tide data recieved.')
-# make the image
-# print the head of each of the input dataframes
-print('------------------ predicted tides head -----------------')
-print(df_predicted.head())
-#print datatypes for columns
-print(df_predicted.dtypes)
+    print('tide data recieved.')
+    # make the image
+    # print the head of each of the input dataframes
+    print('------------------ predicted tides head -----------------')
+    print(df_predicted.head())
+    #print datatypes for columns
+    print(df_predicted.dtypes)
 
-print('------------------ high/low tides head -----------------')
-print(df_high_low.head())
-print(df_high_low.dtypes)
+    print('------------------ high/low tides head -----------------')
+    print(df_high_low.head())
+    print(df_high_low.dtypes)
 
 
-img, draw, font = create_tide_plot_image(df_predicted, df_high_low, 'tide_plot.png')
+    img, draw, font = create_tide_plot_image(df_predicted, df_high_low, 'tide_plot.png')
 
-from ScreenWriter import write_to_screen
-import os
-import pickle
-from datetime import datetime, timedelta
-from ScreenWriter import partial_refresh
-from ScreenWriter import init_screen
+    from ScreenWriter import write_to_screen
+    import os
+    import pickle
+    from datetime import datetime, timedelta
+    from ScreenWriter import partial_refresh
+    from ScreenWriter import init_screen
 
-print("ScreenWriter imported")
+    print("ScreenWriter imported")
 
-# write to screen using ScreenWriter.py
-# Use partial_refresh() most of the time, and write_to_screen() every 10 times
-epd = init_screen()
-picfile = 'tide_plot.png'
-print(f'script run counter = {run_count}, full refresh every 4')
-if run_count == 1:
-    write_to_screen(picfile, epd)
-try:
-    if run_count % 4 == 0:
+    # write to screen using ScreenWriter.py
+    # Use partial_refresh() most of the time, and write_to_screen() every 10 times
+    epd = init_screen()
+    picfile = 'tide_plot.png'
+    print(f'script run counter = {run_count}, full refresh every 4')
+    if run_count == 1:
         write_to_screen(picfile, epd)
-        print("image written to screen (full refresh)")
-    else:
-        partial_refresh(picfile, epd)
-        print("image written to screen (partial refresh)")
+    try:
+        if run_count % 4 == 0:
+            write_to_screen(picfile, epd)
+            print("image written to screen (full refresh)")
+        else:
+            partial_refresh(picfile, epd)
+            print("image written to screen (partial refresh)")
 
-except Exception as e:
-    print("image not written to screen:", e)
+    except Exception as e:
+        print("image not written to screen:", e)
 
-    pass
+        pass
+else:
+    print('tide data unavailable; backup screen image displayed.')
 
 print('Code finished at time: ', datetime.now(ireland_tz))
 

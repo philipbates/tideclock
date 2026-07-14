@@ -5,6 +5,9 @@ Clock stopped working - this was due to an error in the high tide formatting.
 To run it, connect to a terminal and write
 '''ssh tony@raspberrypi.local'''
 
+For 2026 operations on work computer you need "& C:\Program Files\Git\usr\bin\ssh.exe" tony@raspberrypi.local
+
+
 get into the right directory - below you can make the directory, for now you can just find it
 
 '''Making the GIT repository

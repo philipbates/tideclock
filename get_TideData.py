@@ -19,10 +19,12 @@ def create_high_low_tide_times_url(starttime, endtime):
     querytime = "time"
     querysep = "%2C"
     querytidetimecat = "tide_time_category"
-    quertideheightlat = "Water_Level_ODMalin"
+    quertideheightlat = "Water_Level_OD_Malin" #2026 update from OMD to ODMalin
+    quertideheightlat = "Water_Level_OD_M" #2026 update from OMD to ODMalin
+    ''' deliberate error introduced above to test error handling'''    
     querystation = "stationID"
     # querywater = "Water_Level_LAT" the tide predicitions are not at this water level
-    querywater = "Water_Level_OD_Malin"
+    querywater = "Water_Level_OD_Malin" #2026 update from OMD to OD_Malin
     variablesep = "&"
     stationname = r"stationID=%22Sligo%22"
     # 2025 https://erddap.marine.ie/erddap/tabledap/IMI_TidePrediction_HighLow.json?stationID%2Ctime%2Clongitude%2Clatitude%2Ctide_time_category%2CWater_Level_ODM&stationID%3E=%22Sligo%22&time%3E=2025-08-30T12%3A03%3A57Z&time%3C=2025-09-07T12%3A03%3A57Z

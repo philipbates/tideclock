@@ -19,7 +19,7 @@ def create_high_low_tide_times_url(starttime, endtime):
     querytime = "time"
     querysep = "%2C"
     querytidetimecat = "tide_time_category"
-    quertideheightlat = "Water_Level_ODM"
+    quertideheightlat = "Water_Level_ODMalin"
     querystation = "stationID"
     # querywater = "Water_Level_LAT" the tide predicitions are not at this water level
     querywater = "Water_Level_OD_Malin"

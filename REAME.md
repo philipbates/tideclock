@@ -17,6 +17,8 @@ tony@raspberrypi:~/Documents $ ls tideclock
 tony@raspberrypi:~/Documents $ cd tideclock
 tony@raspberrypi:~/Documents/tideclock $ git clone https://https://github.com/philipbates/tideclock'''
 
+password is as expected (usual, no plus)
+
 When in the correct directory, here is how to sync to the github
 '''git stath: needed because otherwise you get sync errors.
 git fetch: Retrieves updates from the remote repository.
@@ -49,6 +51,7 @@ git merge
 
 If you want to test the file you need to activate the venv
 source /home/tony/tidal/bin/activate
+
 python tidal_code_v2.py
 
 

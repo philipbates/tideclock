@@ -8,6 +8,8 @@ import pytz
 import get_TideData
 import os
 import pickle
+from ScreenWriter import init_screen, write_to_screen, partial_refresh
+import pickle
 
 
 
@@ -311,9 +313,8 @@ if is_data_stale(data_store_path):
     except Exception as e:
         tide_data_ok = False
         print("Tide data fetch failed:", e)
-        from ScreenWriter import init_screen, write_to_screen
         epd = init_screen()
-        picfile = 'wave.png'
+        picfile = 'tide_plot.png'
         write_to_screen(picfile, epd)
         print("Error image displayed on screen.")
     if tide_data_ok:
@@ -357,16 +358,6 @@ if tide_data_ok:
 
 
     img, draw, font = create_tide_plot_image(df_predicted, df_high_low, 'tide_plot.png')
-
-    from ScreenWriter import write_to_screen
-    import os
-    import pickle
-    from datetime import datetime, timedelta
-    from ScreenWriter import partial_refresh
-    from ScreenWriter import init_screen
-
-    print("ScreenWriter imported")
-
     # write to screen using ScreenWriter.py
     # Use partial_refresh() most of the time, and write_to_screen() every 10 times
     epd = init_screen()

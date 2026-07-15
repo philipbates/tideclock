@@ -8,7 +8,7 @@ import pytz
 import get_TideData
 import os
 import pickle
-from ScreenWriter import init_screen, write_to_screen, partial_refresh, display_error
+from ScreenWriter import init_screen, write_to_screen, partial_refresh
 
 
 

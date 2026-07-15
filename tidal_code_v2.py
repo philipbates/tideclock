@@ -313,7 +313,7 @@ if is_data_stale(data_store_path):
         tide_data_ok = False
         print("Tide data fetch failed:", e)
         epd = init_screen()
-        display_error('wave.png', epd)
+        write_to_screen('wave.png', epd)
         print("Error image displayed on screen.")
     if tide_data_ok:
         with open(data_store_path, "wb") as f:
@@ -359,7 +359,7 @@ if tide_data_ok:
     # write to screen using ScreenWriter.py
     # Use partial_refresh() most of the time, and write_to_screen() every 10 times
     epd = init_screen()
-    picfile = 'wave.png'
+    picfile = 'tide_plot.png'
     print(f'script run counter = {run_count}, full refresh every 4')
     if run_count == 1:
         write_to_screen(picfile, epd)

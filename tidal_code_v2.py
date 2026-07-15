@@ -311,9 +311,10 @@ if is_data_stale(data_store_path):
     except Exception as e:
         tide_data_ok = False
         print("Tide data fetch failed:", e)
-        from ScreenWriter import init_screen, display_error
+        from ScreenWriter import init_screen, write_to_screen
         epd = init_screen()
-        display_error('wave.png', epd)
+        picfile = 'wave.png'
+        write_to_screen(picfile, epd)
         print("Error image displayed on screen.")
     if tide_data_ok:
         with open(data_store_path, "wb") as f:

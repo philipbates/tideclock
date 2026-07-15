@@ -8,8 +8,7 @@ import pytz
 import get_TideData
 import os
 import pickle
-from ScreenWriter import init_screen, write_to_screen, partial_refresh
-import pickle
+from ScreenWriter import init_screen, write_to_screen, partial_refresh, display_error
 
 
 
@@ -314,8 +313,7 @@ if is_data_stale(data_store_path):
         tide_data_ok = False
         print("Tide data fetch failed:", e)
         epd = init_screen()
-        picfile = 'tide_plot.png'
-        write_to_screen(picfile, epd)
+        display_error('wave.png', epd)
         print("Error image displayed on screen.")
     if tide_data_ok:
         with open(data_store_path, "wb") as f:
@@ -365,18 +363,19 @@ if tide_data_ok:
     print(f'script run counter = {run_count}, full refresh every 4')
     if run_count == 1:
         write_to_screen(picfile, epd)
-    try:
-        if run_count % 4 == 0:
-            write_to_screen(picfile, epd)
-            print("image written to screen (full refresh)")
-        else:
+    elif run_count % 4 == 0:
+        write_to_screen(picfile, epd)
+        print("image written to screen (full refresh)")
+    else:
+        try:
             partial_refresh(picfile, epd)
             print("image written to screen (partial refresh)")
+        except Exception as e:
+            print("partial refresh failed, retrying full refresh:", e)
+            epd = init_screen()
+            write_to_screen(picfile, epd)
+            print("image written to screen (full refresh fallback)")
 
-    except Exception as e:
-        print("image not written to screen:", e)
-
-        pass
 else:
     print('tide data unavailable; backup screen image displayed.')
 

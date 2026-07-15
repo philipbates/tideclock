@@ -313,7 +313,7 @@ if is_data_stale(data_store_path):
         tide_data_ok = False
         print("Tide data fetch failed:", e)
         epd = init_screen()
-        write_to_screen('wave.png', epd)
+        write_to_screen('tide_plot.png', epd)
         print("Error image displayed on screen.")
     if tide_data_ok:
         with open(data_store_path, "wb") as f:

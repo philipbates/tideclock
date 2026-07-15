@@ -37,9 +37,19 @@ def init_screen():
 
 def _prepare_image_for_epd(picfile, epd):
     """Load and normalize an image for 1-bit full refresh on epd4in26."""
-    image_path = os.path.abspath(picfile)
-    if not os.path.exists(image_path):
-        raise FileNotFoundError(f"Image not found: {image_path}")
+    candidate_paths = []
+    if os.path.isabs(picfile):
+        candidate_paths.append(picfile)
+    else:
+        # Running from cron/systemd can change cwd, so check both cwd and this module's folder.
+        candidate_paths.append(os.path.abspath(picfile))
+        candidate_paths.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), picfile))
+
+    image_path = next((p for p in candidate_paths if os.path.exists(p)), None)
+    if image_path is None:
+        raise FileNotFoundError(f"Image not found. Tried: {candidate_paths}")
+
+    print(f"Using image path: {image_path}")
 
     image = Image.open(image_path)
     image = image.resize((epd.width, epd.height))

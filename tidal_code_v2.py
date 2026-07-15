@@ -314,6 +314,7 @@ if is_data_stale(data_store_path):
         from ScreenWriter import init_screen, display_error
         epd = init_screen()
         display_error('wave.png', epd)
+        print("Error image displayed on screen.")
     if tide_data_ok:
         with open(data_store_path, "wb") as f:
             pickle.dump({

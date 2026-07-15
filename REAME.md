@@ -5,7 +5,7 @@ Clock stopped working - this was due to an error in the high tide formatting.
 To run it, connect to a terminal and write
 '''ssh tony@raspberrypi.local'''
 
-For 2026 operations on work computer you need "& C:\Program Files\Git\usr\bin\ssh.exe" tony@raspberrypi.local
+For 2026 operations on work computer you need [& "C:\Program Files\Git\usr\bin\ssh.exe" tony@raspberrypi.local]
 
 
 get into the right directory - below you can make the directory, for now you can just find it
@@ -47,14 +47,17 @@ visually it is possible to see the pi flickering as if it is trying to update, s
 
 Tried multiple times, eventually solved via moving both pi and laptop to the study, re-starting there, and everything worked. 
 
+For 2026 operations on work computer you need [& "C:\Program Files\Git\usr\bin\ssh.exe" tony@raspberrypi.local]
 git stash
 git fetch 
 git merge
 
+sudo systemctl daemon-reload
+sudo systemctl enable tideclock.timer
+
 
 If you want to test the file you need to activate the venv
 source /home/tony/tidal/bin/activate
-
 python tidal_code_v2.py
 
 

@@ -20,7 +20,6 @@ def create_high_low_tide_times_url(starttime, endtime):
     querysep = "%2C"
     querytidetimecat = "tide_time_category"
     quertideheightlat = "Water_Level_OD_Malin" #2026 update from OMD to ODMalin
-    quertideheightlat = "Water_Level_OD_M" #2026 update from OMD to ODMalin
     ''' deliberate error introduced above to test error handling'''    
     querystation = "stationID"
     # querywater = "Water_Level_LAT" the tide predicitions are not at this water level

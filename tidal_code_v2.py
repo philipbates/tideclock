@@ -9,7 +9,7 @@ import get_TideData
 import os
 import pickle
 
-Testmode = True
+Testmode = False
 if not Testmode:
     from ScreenWriter import init_screen, write_to_screen, partial_refresh
 

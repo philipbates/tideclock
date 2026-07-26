@@ -125,9 +125,11 @@ def mark_tide_time(draw, mapper, df_highlow_tides):
             draw.line((tide_x, tide_y, tide_x, 88), fill='black')
         # add the label
         t_xoff = 4
-        tide_level_text = f"{tide_xy[1]:.1f} m"
         if tide_type == "HIGH":
-            tide_level_text = f"{tide_xy[1]:.1f} m"
+            streedagh_offset_OD_Malin = 1.95 # tide websites report chart data
+            # chart data is referenced to the lowest expected tide at a specific beach
+            # the database data is referenced to the historical mean sea level at Malin Head
+            tide_level_text = f"{streedagh_offset_OD_Malin+tide_xy[1]:.1f} m"
             draw.text((tide_x+t_xoff, 220), label_time, fill='white', font=font, anchor='mt')
             font_tide_level = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=36)
             draw.text((tide_x-t_xoff+8, 265), tide_level_text, fill='white', font=font_tide_level, anchor='mt')

@@ -8,7 +8,10 @@ import pytz
 import get_TideData
 import os
 import pickle
-from ScreenWriter import init_screen, write_to_screen, partial_refresh
+
+Testmode = True
+if not Testmode:
+    from ScreenWriter import init_screen, write_to_screen, partial_refresh
 
 
 
@@ -122,8 +125,10 @@ def mark_tide_time(draw, mapper, df_highlow_tides):
             draw.line((tide_x, tide_y, tide_x, 88), fill='black')
         # add the label
         t_xoff = 4
+        tide_level_text = f"{tide_xy[1]:.1f} m"
         if tide_type == "HIGH":
             draw.text((tide_x+t_xoff, 220), label_time, fill='white', font=font, anchor='mt')
+            draw.text((tide_x-t_xoff, 245), tide_level_text, fill='white', font=font, anchor='mt')
         elif tide_type == "LOW":
             draw.text((tide_x-t_xoff, 80), label_time, fill='black', font=font, anchor='ms')
         print(f"Tide time: {label_time} located at {tide_x, tide_y}")
@@ -312,9 +317,10 @@ if is_data_stale(data_store_path):
     except Exception as e:
         tide_data_ok = False
         print("Tide data fetch failed:", e)
-        epd = init_screen()
-        write_to_screen('wave.png', epd)
-        print("Error image displayed on screen.")
+        if not Testmode:
+            epd = init_screen()
+            write_to_screen('wave.png', epd)
+            print("Error image displayed on screen.")
     if tide_data_ok:
         with open(data_store_path, "wb") as f:
             pickle.dump({
@@ -358,23 +364,27 @@ if tide_data_ok:
     img, draw, font = create_tide_plot_image(df_predicted, df_high_low, 'tide_plot.png')
     # write to screen using ScreenWriter.py
     # Use partial_refresh() most of the time, and write_to_screen() every 10 times
-    epd = init_screen()
-    picfile = 'tide_plot.png'
-    print(f'script run counter = {run_count}, full refresh every 4')
-    if run_count == 1:
-        write_to_screen(picfile, epd)
-    elif run_count % 4 == 0:
-        write_to_screen(picfile, epd)
-        print("image written to screen (full refresh)")
-    else:
-        try:
-            partial_refresh(picfile, epd)
-            print("image written to screen (partial refresh)")
-        except Exception as e:
-            print("partial refresh failed, retrying full refresh:", e)
-            epd = init_screen()
+    if not Testmode:
+        epd = init_screen()
+        picfile = 'tide_plot.png'
+        print(f'script run counter = {run_count}, full refresh every 4')
+        if run_count == 1:
             write_to_screen(picfile, epd)
-            print("image written to screen (full refresh fallback)")
+        elif run_count % 4 == 0:
+            write_to_screen(picfile, epd)
+            print("image written to screen (full refresh)")
+        else:
+            try:
+                partial_refresh(picfile, epd)
+                print("image written to screen (partial refresh)")
+            except Exception as e:
+                print("partial refresh failed, retrying full refresh:", e)
+                epd = init_screen()
+                write_to_screen(picfile, epd)
+                print("image written to screen (full refresh fallback)")
+    else:
+        print('Testmode enabled - no write to screen')
+
 
 else:
     print('tide data unavailable; backup screen image displayed.')

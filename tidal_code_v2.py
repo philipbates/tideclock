@@ -127,8 +127,10 @@ def mark_tide_time(draw, mapper, df_highlow_tides):
         t_xoff = 4
         tide_level_text = f"{tide_xy[1]:.1f} m"
         if tide_type == "HIGH":
+            tide_level_text = f"{tide_xy[1]:.1f} m"
             draw.text((tide_x+t_xoff, 220), label_time, fill='white', font=font, anchor='mt')
-            draw.text((tide_x-t_xoff, 245), tide_level_text, fill='white', font=font, anchor='mt')
+            font_tide_level = ImageFont.truetype("Work-Sans-1.50/fonts/webfonts/ttf/WorkSans-Medium.ttf", size=36)
+            draw.text((tide_x-t_xoff, 255), tide_level_text, fill='white', font=font_tide_level, anchor='mt')
         elif tide_type == "LOW":
             draw.text((tide_x-t_xoff, 80), label_time, fill='black', font=font, anchor='ms')
         print(f"Tide time: {label_time} located at {tide_x, tide_y}")
